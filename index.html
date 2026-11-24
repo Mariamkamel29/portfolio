@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mariam Kamel — Portfolio Website (code)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F3F3;--surface:#fff;--inverse:#2B2B2B;--heading:#222;--text:#2B2B2B;--nav:#343434;--sec:#7B7B7B;--subtle:rgba(43,43,43,.098);--m:81px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--sec);font-family:'Inter','Inter Display',sans-serif;font-optical-sizing:auto;font-size:18px;line-height:27px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+.wrap{max-width:1497px;margin:0 auto;padding:0 var(--m)}
+.ph{background:var(--sec);border-radius:12px}
+.h2{font-size:48px;line-height:57.6px;color:var(--heading);font-weight:400}
+.pill{display:inline-flex;align-items:center;height:34px;padding:0 18px;border-radius:17px;font-size:16px;background:var(--bg);color:#343434;white-space:nowrap}
+.pill.dark{background:var(--heading);color:#fff}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--heading);margin-right:8px;vertical-align:middle}
+.logo{display:flex;align-items:center;gap:6px;color:var(--heading);font-style:italic;font-size:20px}
+.logo i{display:inline-block;width:22px;height:22px;border-radius:50%;background:#000}
+.logo b{display:inline-block;width:18px;height:34px;background:#000;border-radius:9px}
+.u{text-decoration:underline;color:var(--heading)}
+.nav{display:flex;align-items:center;gap:40px;height:96px}
+.nav .logo{width:200px}
+.links{display:flex;gap:32px;color:var(--nav);font-size:16px;flex:1}
+.links a{position:relative;transition:color .3s}
+.links a::after{content:'';position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.links a:hover::after,.links a.on::after{transform:scaleX(1);transform-origin:left}
+.links a.on{color:var(--heading)}
+.chev{width:8px;height:8px;border-right:2px solid var(--nav);border-bottom:2px solid var(--nav);transform:rotate(45deg);display:inline-block;margin-top:-4px}
+.nav .u{font-size:18px;white-space:nowrap}
+/* HOME */
+.hero{position:relative;height:932px;display:flex;align-items:flex-start}
+.hero .vlabel{position:absolute;left:0;top:235px;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap;font-size:18px;color:var(--sec)}
+.hero .vyear{position:absolute;left:0;top:854px;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap;font-size:18px;color:var(--sec)}
+.hero .rule{position:absolute;left:90px;top:334px;width:1px;height:430px;background:var(--subtle);transform-origin:top;animation:grow 1.4s .1s cubic-bezier(.2,.7,.2,1) both}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.hero .content{position:relative;padding-left:100px;flex:1;min-width:0}
+.stats{display:flex;gap:40px;margin-top:66px}
+.stat .v{font-size:48px;line-height:58px;color:var(--text)}
+.stat .l{font-size:16px;line-height:24px}
+.hero h1{margin-top:92px;font-size:clamp(120px,16vw,240px);line-height:1;font-weight:300;letter-spacing:-0.04em;color:var(--heading)}
+.hero .sub{margin-top:36px;font-size:19px;color:var(--text)}
+.hero .scroll{position:absolute;left:100px;bottom:48px;color:var(--text);animation:bob 2.4s ease-in-out infinite;background:none;border:0;font:inherit;font-size:18px;cursor:pointer;padding:0}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.hero .portrait{position:absolute;right:81px;top:135px;width:452px;height:634px;animation:float 7s 1.3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.about{display:grid;grid-template-columns:448px 315px 1fr;column-gap:58px;padding:94px 0 0;position:relative;min-height:818px}
+.about .h2{grid-column:1;grid-row:1;align-self:start}
+.about .about-l{display:contents}
+.about .p{grid-column:1;grid-row:2;margin-top:40px;width:448px;font-size:19px;line-height:28.5px}
+.about .pts{grid-column:3;grid-row:2;align-self:end;display:flex;flex-direction:column;gap:40px;width:430px;justify-self:end}
+.about .about-photo{grid-column:3;grid-row:1;justify-self:end;align-self:start;width:212px;height:190px;border-radius:12px}
+.pt{display:flex;gap:17px;align-items:flex-start}
+.pt i{flex:0 0 36px;height:36px;border-radius:50%;background:#000}
+.card{background:var(--surface);border-radius:12px;padding:40px 23px;height:678px;display:flex;flex-direction:column;position:relative;align-self:start}
+.about .card{grid-column:2;grid-row:1 / span 2}
+.card .ico{width:72px;height:72px;border-radius:50%;background:var(--bg);margin-bottom:28px}
+.card .big{font-size:80px;line-height:80px;color:var(--text)}
+.card .lbl{font-size:16px;line-height:24px;margin-top:16px}
+.card .ph{position:absolute;left:23px;bottom:38px;width:269px;height:320px}
+.projects{padding:60px 0 0}
+.strip{display:flex;align-items:flex-start;gap:30px;overflow-x:auto;padding-bottom:12px;scrollbar-width:none}
+.proj{position:relative;flex:0 0 400px;max-width:80vw;cursor:pointer;background:#fff;border-radius:28px;padding:14px 14px 24px;border:1px solid #fff;box-shadow:0 0 0 8px rgba(255,255,255,.55);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+.proj:hover{transform:scale(1.05);box-shadow:0 0 0 8px rgba(255,255,255,.8),0 22px 44px rgba(0,0,0,.08)}
+.proj .ph{height:300px;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:#F3F3F3;font-size:30px;line-height:38px;font-weight:300;background:linear-gradient(135deg,#2B2B2B 0%,#7B7B7B 100%)}
+.proj .t{margin-top:22px;padding:0 12px;font-size:24px;line-height:34px;color:var(--heading);display:block;white-space:normal;overflow:visible}
+.proj .t::after{content:"Case study ↗";position:absolute;top:24px;right:24px;margin:0;opacity:0;transition:opacity .4s ease;background:var(--bg);border-radius:20px;padding:6px 16px;font-size:15px;line-height:22px;color:#343434}
+.proj .t small{font-size:16px;color:var(--sec)}
+.proj .t em{font-style:normal;font-size:16px;line-height:24px;color:var(--sec)}
+.proj:hover .t::after{opacity:1}
+.projgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px 30px}
+.projgrid .proj{flex:none;max-width:none;width:100%}
+.projgrid .proj .t{white-space:normal;overflow:visible}
+.projgrid .proj .ph{height:420px;font-size:44px;line-height:52px}
+.career{background:var(--surface);border-radius:24px;margin-top:40px;padding:89px var(--m) 100px}
+.c-top{display:flex;justify-content:space-between;gap:60px;align-items:flex-start}
+.eyebrow{display:flex;align-items:center;font-size:18px;color:var(--text);margin-bottom:60px}
+.c-top h2{width:460px;flex:0 0 460px}
+.intro{width:530px;margin-top:150px;color:var(--sec)}
+.intro .u{display:inline-block;margin-top:36px}
+.jobs{margin-top:60px}
+.job{display:flex;justify-content:space-between;gap:40px;border-top:1px solid var(--subtle);padding:32px 0;cursor:pointer;transition:background-color .4s}
+.job:hover{background:rgba(255,255,255,.6)}
+.job .left{flex:1;min-width:0}
+.job .co{font-size:32px;line-height:40px;color:var(--text)}
+.job .dt{font-size:16px;line-height:24px;color:var(--sec);margin-top:4px}
+.job .more{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .7s cubic-bezier(.2,.7,.2,1),opacity .5s ease}
+.job .more>.pics{min-height:0;overflow:hidden;display:flex;gap:16px;padding-top:0;transition:padding-top .7s cubic-bezier(.2,.7,.2,1)}
+.job .more .ph{width:210px;height:160px;border-radius:12px;flex:0 0 210px;opacity:0;transform:translateY(30px);transition:opacity .5s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.job:hover .more{grid-template-rows:1fr;opacity:1}
+.job:hover .more>.pics{padding-top:32px}
+.job:hover .more .ph{opacity:1;transform:none}
+.job .right{flex:0 0 480px;display:flex;flex-direction:column;align-items:flex-end;gap:20px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.job:hover .right{transform:translateX(-8px)}
+.job .tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.job .role{text-align:right;width:100%}
+.job .pill.dark{background:var(--bg);color:#343434}
+.career .award{display:flex;flex-wrap:nowrap;justify-content:flex-start;align-items:center;gap:24px;white-space:nowrap;text-align:left}
+.career .award>*{text-align:left;min-width:0}
+.career .award>*:nth-child(1){flex:0 0 110px}
+.career .award>*:nth-child(2){flex:0 0 560px;white-space:nowrap}
+.career .award>*:nth-child(3){flex:1 1 auto;white-space:nowrap}
+#p-about .award{display:flex;flex-wrap:nowrap;justify-content:flex-start;align-items:center;gap:24px;white-space:nowrap;text-align:left}
+#p-about .award>*{text-align:left;min-width:0}
+#p-about .award>*:nth-child(1){flex:0 0 110px}
+#p-about .award>*:nth-child(2){flex:0 0 560px;white-space:nowrap}
+#p-about .award>*:nth-child(3){flex:1 1 auto;white-space:nowrap}
+.job .arrow{width:85px;height:85px;border-radius:50%;background:var(--heading);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;opacity:0;transform:scale(.4) rotate(-45deg);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.7,.2,1),background-color .3s}
+.job:hover .arrow{opacity:1;transform:scale(1) rotate(45deg);background:#000}
+.jobs .arrow,.jobs .more{display:none!important}
+.jd,.cdesc{font-size:16px;line-height:24px;max-width:560px;max-height:0;opacity:0;overflow:hidden;transform:translateY(-8px);margin-top:0;transition:max-height .7s cubic-bezier(.2,.7,.2,1),opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1),margin-top .6s cubic-bezier(.2,.7,.2,1)}
+.jd{color:var(--sec)}
+.cdesc{color:var(--text)}
+.job:hover .jd,.job:hover .cdesc{max-height:200px;opacity:1;transform:none;margin-top:12px}
+@media (prefers-reduced-motion:reduce){.jd,.cdesc{transition:none}}
+.ctaband{background:transparent;margin-top:48px;padding:0 var(--m) 80px}
+.ctacard{background:var(--inverse);border-radius:16px;color:#fff;text-align:center;padding:120px 40px 110px}
+.ctacard .e{font-size:18px;line-height:26px}
+.ctacard h3{font-size:48px;line-height:52.8px;letter-spacing:-1.92px;font-weight:400;margin:24px auto 0;max-width:788px}
+.ctacard p{max-width:700px;margin:24px auto 0;font-size:18px;color:#fff}
+.ctacard a{display:inline-block;margin-top:40px;text-decoration:underline;font-size:18px}
+.blog{padding:64px var(--m) 80px}
+.tag{display:flex;justify-content:center}
+.tag span{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:20px;background:var(--surface);color:var(--heading)}
+.blog h2,.center{text-align:center;margin-top:38px}
+.grid{display:grid;gap:24px;margin-top:60px}
+.grid.r1{grid-template-columns:547px 1fr}
+.grid.r2{grid-template-columns:1fr 546px;margin-top:24px}
+.post{position:relative;height:382px;border-radius:16px;background:var(--sec);transition:transform .5s cubic-bezier(.2,.7,.2,1);cursor:pointer}
+.post:hover{transform:translateY(-6px)}
+.post .tt{position:absolute;left:12px;bottom:12px;background:var(--bg);color:var(--heading);border-radius:28px;height:56px;display:flex;align-items:center;padding:0 24px;font-size:18px;white-space:nowrap;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis}
+/* FOOTER */
+.foot{margin:0 0 24px calc(50% - 50vw + 24px);width:calc(100vw - 48px);background:#000;border-radius:24px;padding:24px;color:var(--bg);overflow:hidden}
+.foot .top{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot .logo{color:var(--bg)}
+.foot .logo i,.foot .logo b{background:var(--bg)}
+.foot .fnav{display:flex;gap:28px;font-size:18px}
+.foot .fnav a:hover,.foot .fcta:hover{opacity:.6}
+.foot .fcta{text-decoration:underline;font-size:18px;white-space:nowrap}
+.foot .mid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;margin-top:60px}
+.foot .soc{display:flex;flex-direction:column;gap:6px;font-size:28px;line-height:36px}
+.foot .soc.r{text-align:right}
+.foot .c{text-align:center}
+.foot .c .phone{font-size:48px;line-height:58px;color:var(--bg)}
+.foot .c .mail{font-size:48px;line-height:58px;color:var(--bg);text-decoration:underline}
+.foot .wm{margin-top:60px;font-size:clamp(60px,10vw,150px);line-height:1.05;color:#2B2B2B;white-space:nowrap;overflow:hidden}
+.foot .track{display:flex;width:max-content;animation:marq 45s linear infinite}
+.foot .track span{padding-right:48px}
+@keyframes marq{to{transform:translateX(-50%)}}
+.foot .legal{margin-top:40px;text-align:center;font-size:16px;color:var(--bg)}
+/* INNER PAGES */
+.ph-hero{padding:120px 0 80px}
+.ph-hero h1{font-size:clamp(64px,8vw,120px);line-height:1.05;font-weight:300;letter-spacing:-0.04em;color:var(--heading)}
+.ph-hero p{margin-top:32px;font-size:19px;line-height:28.5px;max-width:700px;color:var(--sec)}
+.sec-title{font-size:48px;line-height:57.6px;color:var(--heading);margin-bottom:40px}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.about-stats .box{background:var(--surface);border-radius:16px;padding:40px 32px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-start;gap:28px}
+.box .n{font-size:96px;line-height:96px;color:var(--text)}
+.box .l{font-size:18px;line-height:27px;color:var(--sec);min-height:54px}
+.pillset{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.pillset span{background:var(--bg);color:#343434;border-radius:20px;padding:8px 16px;font-size:16px;line-height:24px;white-space:nowrap}
+.testi{margin-top:24px;background:var(--surface);border-radius:16px;padding:48px 40px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.testi blockquote{font-size:24px;line-height:36px;color:var(--text)}
+.testi .who{margin-top:24px;color:var(--heading)}
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px}
+.why .box{background:var(--surface);border-radius:16px;padding:32px;min-height:260px}
+.why .box h4{font-size:24px;line-height:32px;color:var(--heading);font-weight:400;margin-top:40px}
+.award{display:grid;grid-template-columns:80px 120px 1fr 1fr;gap:24px;align-items:center;border-top:1px solid var(--subtle);padding:28px 0}
+.award .y{color:var(--heading)}
+.clients{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:40px}
+.clients div{background:var(--surface);border-radius:16px;height:120px;display:flex;align-items:center;justify-content:center;color:var(--heading);font-size:22px}
+.filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.filters button{border:0;cursor:pointer;height:40px;padding:0 20px;border-radius:20px;background:var(--surface);color:var(--heading);font:inherit;font-size:16px}
+.filters button.on{background:var(--heading);color:#fff}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.pgrid a{display:block}
+.pgrid .ph{height:420px;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:#F3F3F3;font-size:40px;line-height:48px;font-weight:300;background:linear-gradient(135deg,#2B2B2B 0%,#7B7B7B 100%)}
+.pgrid .t{margin-top:18px;font-size:28px;line-height:36px;color:var(--heading)}
+.pgrid .c2{font-size:16px;color:var(--sec)}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.svc .box{background:var(--surface);border-radius:16px;padding:48px 40px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between}
+.svc h3{font-size:36px;line-height:44px;font-weight:400;color:var(--heading)}
+.svc p{font-size:18px;line-height:27px}
+.posts-list{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.posts-list .post{height:340px}
+.feat{background:var(--inverse);color:#fff;border-radius:16px;padding:64px 56px;margin-top:40px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.feat h3{font-size:40px;line-height:48px;font-weight:400;max-width:600px}
+.feat p{color:#ddd;margin-top:16px}
+.feat a{text-decoration:underline;white-space:nowrap;font-size:20px}
+#p-about .clients{margin-bottom:120px}
+@keyframes pfUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes pfIn{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}
+#p-portfolio .ph-hero h1,#p-portfolio .ph-hero p{animation:pfUp 1s cubic-bezier(.2,.7,.2,1) both}
+#p-portfolio .ph-hero p{animation-delay:.15s}
+#p-portfolio .pgrid a:not([hidden]){animation:pfIn .7s cubic-bezier(.2,.7,.2,1) backwards}
+#p-portfolio .pgrid a:nth-child(2){animation-delay:.08s}
+#p-portfolio .pgrid a:nth-child(3){animation-delay:.16s}
+#p-portfolio .pgrid a:nth-child(4){animation-delay:.24s}
+#p-portfolio .pgrid a:nth-child(5){animation-delay:.32s}
+#p-portfolio .pgrid a:nth-child(6){animation-delay:.4s}
+#p-portfolio .pgrid a{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+#p-portfolio .pgrid a:hover{transform:translateY(-8px)}
+#p-portfolio .pgrid .ph{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+#p-portfolio .pgrid a{perspective:1200px;position:relative}
+#p-portfolio .pgrid a::after{content:'';position:absolute;top:56px;right:-20px;width:124px;height:250px;border-radius:22px;background:linear-gradient(160deg,#4a4a4a 0%,#1a1a1a 100%);border:6px solid #111;box-shadow:0 24px 44px rgba(0,0,0,.28);opacity:0;transform:translateX(-60px) rotate(6deg);transition:transform .8s cubic-bezier(.2,.7,.2,1) .25s,opacity .6s ease .25s;z-index:2;pointer-events:none}
+#p-portfolio .pgrid a:hover::after{opacity:1;transform:translateX(0) rotate(0)}
+#p-portfolio .pgrid a:nth-child(1)::after{background:linear-gradient(160deg,#8a5a44 0%,#2a1a14 100%)}
+#p-portfolio .pgrid a:nth-child(2)::after{background:linear-gradient(160deg,#3a5f94 0%,#0f1d33 100%)}
+#p-portfolio .pgrid a:nth-child(3)::after{background:linear-gradient(160deg,#2f7a58 0%,#0f2a1f 100%)}
+#p-portfolio .pgrid a:nth-child(4)::after{background:linear-gradient(160deg,#8a7a33 0%,#33290f 100%)}
+#p-portfolio .pgrid a:nth-child(5)::after{background:linear-gradient(160deg,#444a8a 0%,#14142e 100%)}
+#p-portfolio .pgrid a:nth-child(6)::after{background:linear-gradient(160deg,#8a3a3a 0%,#330f0f 100%)}
+#p-portfolio .pgrid a:nth-child(2)::after,#p-portfolio .pgrid a:nth-child(4)::after{top:auto;bottom:40px;right:-20px;width:270px;height:190px;border-radius:14px;border:0;background:linear-gradient(to bottom,#e8e8e8 0,#e8e8e8 26px,#1c1c1c 26px,#1c1c1c 100%);box-shadow:0 24px 44px rgba(0,0,0,.28)}
+#p-portfolio .pgrid .ph{position:relative;transform-style:preserve-3d;backface-visibility:hidden;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+#p-portfolio .pgrid a:hover .ph{transform:rotateY(180deg) scale(.9)}
+#p-portfolio .pgrid .ph::after{content:attr(data-back);position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-start;text-align:left;padding:32px 150px 32px 32px;background:#222;color:#F3F3F3;font-size:19px;line-height:28px;font-weight:400;border-radius:16px;transform:rotateY(180deg);backface-visibility:hidden}
+#p-portfolio .pgrid .t{transition:color .4s ease}
+#p-portfolio .pgrid a:hover .t{color:#000}
+#p-portfolio .filters button{transition:background-color .35s ease,color .35s ease,transform .3s ease}
+#p-portfolio .filters button:hover{transform:translateY(-2px)}
+#p-portfolio .filters button:active{transform:scale(.96)}
+@media (prefers-reduced-motion:reduce){#p-portfolio *,#p-portfolio *::before{animation:none!important;transition:none!important}}
+#p-about .box,#p-about .testi,#p-about .why .box,#p-about .clients div{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+#p-about .box:hover,#p-about .testi:hover,#p-about .why .box:hover,#p-about .clients div:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
+#p-about .award{transition:transform .4s ease,background-color .4s ease}
+#p-about .award:hover{transform:translateX(10px)}
+@keyframes rowIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
+@keyframes pillIn{from{opacity:0;transform:scale(.8) translateY(10px)}to{opacity:1;transform:none}}
+#p-about .ph-hero h1{animation:pfUp 1s cubic-bezier(.2,.7,.2,1) both}
+#p-about .ph-hero p{animation:pfUp 1s cubic-bezier(.2,.7,.2,1) .15s both}
+#p-about .pillset span{animation:pillIn .5s cubic-bezier(.2,.7,.2,1) backwards;transition:background-color .3s ease,color .3s ease,transform .3s ease}
+#p-about .pillset span:hover{background:#222;color:#fff;transform:translateY(-2px)}
+#p-about .pillset span:nth-child(2){animation-delay:.05s}
+#p-about .pillset span:nth-child(3){animation-delay:.1s}
+#p-about .pillset span:nth-child(4){animation-delay:.15s}
+#p-about .pillset span:nth-child(5){animation-delay:.2s}
+#p-about .pillset span:nth-child(6){animation-delay:.25s}
+#p-about .pillset span:nth-child(7){animation-delay:.3s}
+#p-about .pillset span:nth-child(8){animation-delay:.35s}
+#p-about .pillset span:nth-child(9){animation-delay:.4s}
+#p-about .pillset span:nth-child(10){animation-delay:.45s}
+#p-about .award{animation:rowIn .6s cubic-bezier(.2,.7,.2,1) backwards}
+#p-about .award:nth-child(2){animation-delay:.1s}
+#p-about .award:nth-child(3){animation-delay:.2s}
+#p-about .award:nth-child(4){animation-delay:.3s}
+#p-about .award:nth-child(5){animation-delay:.4s}
+#p-about .award:nth-child(6){animation-delay:.5s}
+#p-about .award:nth-child(7){animation-delay:.6s}
+@keyframes boxIn{from{opacity:0;transform:translateY(50px) scale(.96)}to{opacity:1;transform:none}}
+#p-about .about-stats .box{animation:boxIn .9s cubic-bezier(.2,.7,.2,1) backwards}
+#p-about .about-stats .box:nth-child(2){animation-delay:.12s}
+#p-about .about-stats .box:nth-child(3){animation-delay:.24s}
+.js #about-sec .about-photo,.js #about-sec .card,.js #about-sec .pt{opacity:0;transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+.js #about-sec .about-photo{transform:translateX(70px)}
+.js #about-sec .card{transform:translateY(70px)}
+.js #about-sec .pt{transform:translateX(40px)}
+.js #about-sec .pt:nth-child(2){transition-delay:.18s}
+.js #about-sec .about-photo.go,.js #about-sec .card.go,.js #about-sec .pt.go{opacity:1;transform:none}
+.js #about-sec .about-photo.go{transition-delay:.1s}
+.js #about-sec .card.go:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(0,0,0,.1)}
+.js #about-sec .about-photo.go:hover{transform:scale(1.03)}
+@media (prefers-reduced-motion:reduce){.js #about-sec .about-photo,.js #about-sec .card,.js #about-sec .pt{opacity:1;transform:none;transition:none}}
+.js #p-about .about-stats .box .l{opacity:0;transform:translateY(14px);transition:opacity .8s ease .45s,transform .8s cubic-bezier(.2,.7,.2,1) .45s}
+.js #p-about .about-stats .box.go .l{opacity:1;transform:none}
+.js #p-about .why .box h4,.js #p-about .why .box p{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.js #p-about .why .box h4{transition-delay:.15s}
+.js #p-about .why .box p{transition-delay:.3s}
+.js #p-about .why .box.go h4,.js #p-about .why .box.go p{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js #p-about .box .l,.js #p-about .why .box h4,.js #p-about .why .box p{opacity:1;transform:none;transition:none}}
+.js #p-about .testi:not(.go) .pillset span{animation-play-state:paused}
+.js #p-about .testi > div > *{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js #p-about .testi.go > div > *{opacity:1;transform:none}
+.js #p-about .testi > div > *:nth-child(2){transition-delay:.15s}
+.js #p-about .testi > div > *:nth-child(3){transition-delay:.3s}
+.js #p-about .testi.go .pillset span{animation-play-state:running}
+@media (prefers-reduced-motion:reduce){.js #p-about .testi > div > *{opacity:1;transform:none;transition:none}}
+#p-about .tools-marq{overflow:hidden;margin-top:40px;margin-bottom:120px;padding:12px 0}
+#p-about .tm-track{display:flex;width:max-content;animation:marqL 22s linear infinite}
+#p-about .tools-marq:hover .tm-track{animation-play-state:paused}
+#p-about .tm-track div{flex:0 0 260px;height:120px;margin-right:24px;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;color:var(--heading);font-size:22px;transition:transform .4s ease,box-shadow .4s ease}
+#p-about .tm-track div:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(0,0,0,.08)}
+@keyframes marqL{to{transform:translateX(-50%)}}
+@keyframes svcIn{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+#p-services .ph-hero h1,#p-services .ph-hero p{animation:pfUp 1s cubic-bezier(.2,.7,.2,1) both}
+#p-services .ph-hero p{animation-delay:.15s}
+#p-services .svc{counter-reset:svc}
+#p-services .svc .box{counter-increment:svc;gap:16px;justify-content:flex-start;min-height:300px;padding:44px 40px;transition:transform .5s cubic-bezier(.2,.7,.2,1),background-color .4s ease,box-shadow .4s ease}
+#p-services .svc .box::before{content:"0" counter(svc);font-size:16px;line-height:24px;color:var(--sec);transition:color .4s ease}
+#p-services .svc h3,#p-services .svc p{transition:color .4s ease}
+#p-services .svc .box.go:hover{transform:translateY(-8px);background:#222;box-shadow:0 22px 44px rgba(0,0,0,.14)}
+#p-services .svc .box:hover h3{color:#fff}
+#p-services .svc .box:hover p{color:#cfcfcf}
+#p-services .svc .box:hover::before{color:#999}
+.js #p-services .svc .box,.js #p-services .feat{opacity:0}
+.js #p-services .svc .box.go,.js #p-services .feat.go{opacity:1;animation:svcIn .9s cubic-bezier(.2,.7,.2,1) backwards}
+.js #p-services .svc .box.go:nth-child(2){animation-delay:.1s}
+.js #p-services .svc .box.go:nth-child(3){animation-delay:.2s}
+.js #p-services .svc .box.go:nth-child(4){animation-delay:.3s}
+.js #p-services .svc .box.go:nth-child(5){animation-delay:.4s}
+.js #p-services .svc .box.go:nth-child(6){animation-delay:.5s}
+@media (prefers-reduced-motion:reduce){.js #p-services .svc .box,.js #p-services .feat{opacity:1;animation:none}}
+#p-blog .bl-hero h1,#p-blog .bl-hero p,#p-blog .bl-eyebrow{animation:pfUp 1s cubic-bezier(.2,.7,.2,1) both}
+#p-blog .bl-hero p{animation-delay:.15s}
+.bl-hero{text-align:center;padding:120px 0 64px}
+.bl-eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:20px;padding:8px 18px;font-size:16px;color:var(--heading)}
+.bl-hero h1{font-size:clamp(56px,7vw,96px);line-height:1.05;font-weight:300;letter-spacing:-.04em;color:var(--heading);margin-top:28px}
+.bl-hero p{max-width:640px;margin:24px auto 0;font-size:19px;line-height:28.5px;color:var(--sec)}
+.bl-filters{justify-content:center;margin-bottom:56px}
+.bl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.bl-feature{grid-column:span 2;grid-row:span 2}
+.bl-card{position:relative;background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+.bl-card:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(0,0,0,.1)}
+.bl-visual{height:220px;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.bl-feature .bl-visual{height:420px}
+.bl-card:hover .bl-visual{transform:scale(1.04)}
+.v1{background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='800' height='500' fill='%23efe3d6'/><rect x='80' y='80' width='200' height='120' rx='16' fill='%235a3f30'/><rect x='310' y='80' width='200' height='120' rx='16' fill='%23c9a98a'/><rect x='540' y='80' width='180' height='120' rx='16' fill='%23ffffff'/><rect x='80' y='240' width='150' height='50' rx='25' fill='%235a3f30'/><rect x='250' y='240' width='150' height='50' rx='25' fill='none' stroke='%235a3f30' stroke-width='3'/><rect x='80' y='330' width='640' height='18' rx='9' fill='%23c9a98a'/><rect x='80' y='366' width='460' height='18' rx='9' fill='%23d9c3ab'/></svg>") center/cover no-repeat}
+.v2{background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='800' height='500' fill='%23101828'/><rect x='80' y='70' width='240' height='90' rx='16' fill='%231d2a44'/><rect x='100' y='95' width='120' height='12' rx='6' fill='%2394a3b8'/><rect x='100' y='120' width='180' height='10' rx='5' fill='%23475569'/><polyline points='80,380 200,330 320,350 440,250 560,280 720,150' fill='none' stroke='%237dd3fc' stroke-width='8' stroke-linejoin='round'/><circle cx='720' cy='150' r='12' fill='%237dd3fc'/></svg>") center/cover no-repeat}
+.v3{background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='800' height='500' fill='%23dfe7d9'/><rect x='300' y='60' width='200' height='380' rx='28' fill='%23ffffff'/><rect x='325' y='110' width='150' height='60' rx='10' fill='%238fa58a'/><rect x='325' y='190' width='150' height='12' rx='6' fill='%23cbd5c4'/><rect x='325' y='215' width='110' height='12' rx='6' fill='%23cbd5c4'/><rect x='80' y='120' width='170' height='150' rx='8' fill='%23fde68a'/><rect x='80' y='300' width='170' height='120' rx='8' fill='%23bbf7d0'/><polygon points='540,300 540,380 565,355 585,400 600,392 580,348 615,348' fill='%23222222'/></svg>") center/cover no-repeat}
+.v4{background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='800' height='500' fill='%23f0e6f6'/><text x='90' y='340' font-size='200' font-family='sans-serif' fill='%239b7fb0'>Aa</text><circle cx='600' cy='160' r='70' fill='%239b7fb0'/><circle cx='700' cy='300' r='50' fill='%23222222'/><circle cx='560' cy='380' r='36' fill='%23ffffff'/></svg>") center/cover no-repeat}
+.v5{background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='800' height='500' fill='%23e9ecef'/><rect x='80' y='60' width='190' height='110' rx='14' fill='%23ffffff'/><rect x='300' y='60' width='190' height='110' rx='14' fill='%23ffffff'/><rect x='520' y='60' width='190' height='110' rx='14' fill='%23ffffff'/><rect x='110' y='320' width='50' height='150' rx='6' fill='%236c757d' opacity='0.5'/><rect x='210' y='250' width='50' height='220' rx='6' fill='%236c757d' opacity='0.7'/><rect x='310' y='350' width='50' height='120' rx='6' fill='%236c757d'/><rect x='410' y='290' width='50' height='180' rx='6' fill='%236c757d' opacity='0.6'/><rect x='510' y='330' width='50' height='140' rx='6' fill='%236c757d' opacity='0.8'/><rect x='610' y='240' width='50' height='230' rx='6' fill='%23222222'/></svg>") center/cover no-repeat}
+.v6{background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='800' height='500' fill='%23f6d9cf'/><rect x='80' y='70' width='180' height='220' rx='16' fill='%23ffffff'/><rect x='100' y='90' width='140' height='110' rx='10' fill='%23c96a4a'/><rect x='100' y='220' width='70' height='26' rx='13' fill='%23222222'/><rect x='310' y='70' width='180' height='220' rx='16' fill='%23ffffff'/><rect x='330' y='90' width='140' height='110' rx='10' fill='%23e0a58f'/><rect x='330' y='220' width='70' height='26' rx='13' fill='%23222222'/><rect x='540' y='70' width='180' height='220' rx='16' fill='%23ffffff'/><rect x='560' y='90' width='140' height='110' rx='10' fill='%23c96a4a'/><rect x='560' y='220' width='70' height='26' rx='13' fill='%23222222'/><rect x='80' y='330' width='640' height='70' rx='35' fill='%23c96a4a'/></svg>") center/cover no-repeat}
+.bl-badge{position:absolute;left:20px;top:20px;background:#222;color:#fff;border-radius:20px;padding:6px 14px;font-size:14px}
+.bl-body{padding:24px 28px 28px;display:flex;flex-direction:column;gap:10px}
+.bl-meta{font-size:14px;line-height:22px;color:var(--sec)}
+.bl-body h2{font-size:24px;line-height:32px;font-weight:400;color:var(--heading)}
+.bl-feature .bl-body h2{font-size:40px;line-height:48px}
+.bl-body p{font-size:16px;line-height:24px;color:var(--text)}
+.bl-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.bl-tags span{background:var(--bg);border-radius:20px;padding:6px 14px;font-size:14px;color:#343434}
+.bl-cta{margin-top:96px;background:var(--inverse);color:#fff;border-radius:16px;padding:80px 40px;text-align:center}
+.bl-cta h3{font-size:44px;line-height:52px;font-weight:400}
+.bl-cta p{margin-top:16px;color:#ccc}
+.bl-cta a{display:inline-block;margin-top:32px;text-decoration:underline;font-size:18px}
+@media (max-width:1100px){.bl-grid{grid-template-columns:1fr}.bl-feature{grid-column:auto;grid-row:auto}}
+.js #p-blog .bl-card,.js #p-blog .bl-cta{opacity:0}
+.js #p-blog .bl-card.go,.js #p-blog .bl-cta.go{opacity:1;animation:svcIn .9s cubic-bezier(.2,.7,.2,1) backwards}
+.js #p-blog .bl-grid .bl-card.go:nth-child(2){animation-delay:.1s}
+.js #p-blog .bl-grid .bl-card.go:nth-child(3){animation-delay:.2s}
+.js #p-blog .bl-grid .bl-card.go:nth-child(4){animation-delay:.3s}
+.js #p-blog .bl-grid .bl-card.go:nth-child(5){animation-delay:.4s}
+.js #p-blog .bl-grid .bl-card.go:nth-child(6){animation-delay:.5s}
+@media (prefers-reduced-motion:reduce){.js #p-blog .bl-card,.js #p-blog .bl-cta{opacity:1;animation:none}}
+.ar-wrap{max-width:900px;margin:0 auto;padding:120px 0 40px}
+.ar-crumbs{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:16px;color:var(--sec)}
+.ar-crumbs a{color:var(--heading);text-decoration:underline}
+.ar-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:48px}
+.ar-tags span{background:#fff;border-radius:20px;padding:6px 16px;font-size:15px;color:#343434}
+.ar-wrap h1{margin-top:24px;font-size:clamp(40px,5vw,64px);line-height:1.1;font-weight:400;letter-spacing:-.02em;color:var(--heading)}
+.ar-lead{margin-top:24px;font-size:22px;line-height:34px;color:var(--text)}
+.ar-by{display:flex;gap:18px;flex-wrap:wrap;margin-top:32px;font-size:16px;color:var(--sec)}
+.ar-by b{color:var(--heading);font-weight:500}
+.ar-hero{height:520px;border-radius:20px;margin-top:48px}
+.ar-body{margin-top:64px;font-size:19px;line-height:31px;color:var(--text)}
+.ar-body h3{font-size:32px;line-height:40px;font-weight:400;color:var(--heading);margin:56px 0 18px}
+.ar-body p{margin-bottom:22px}
+.ar-body ul{list-style:none;margin:0 0 28px}
+.ar-body li{position:relative;padding-left:28px;margin-bottom:12px}
+.ar-body li::before{content:"";position:absolute;left:0;top:12px;width:9px;height:9px;border-radius:50%;background:var(--heading)}
+.ar-quote{margin:56px 0;background:#fff;border-radius:20px;padding:48px 44px;font-size:28px;line-height:40px;color:var(--heading)}
+.ar-rel-h{font-size:32px;line-height:40px;font-weight:400;color:var(--heading);margin:96px 0 24px}
+.ar-rel{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ar-rel a{background:#fff;border-radius:16px;overflow:hidden;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+.ar-rel a:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(0,0,0,.1)}
+.ar-rv{height:180px;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.ar-rel a:hover .ar-rv{transform:scale(1.04)}
+.ar-rb{padding:20px 22px 24px}
+.ar-rb small{font-size:14px;color:var(--sec)}
+.ar-rb h4{margin-top:8px;font-size:20px;line-height:28px;font-weight:400;color:var(--heading)}
+.ar-hero,.ar-wrap h1,.ar-lead{animation:pfUp 1s cubic-bezier(.2,.7,.2,1) both}
+.ar-lead{animation-delay:.15s}
+#p-post{padding-bottom:40px}
+#p-post .bl-cta{margin-top:120px}
+@media (max-width:1100px){.ar-rel{grid-template-columns:1fr}}
+#p-contact{padding-bottom:40px}
+.ct{max-width:1100px;margin:0 auto;padding:140px 0 80px}
+.ct-eyebrow{display:inline-flex;align-items:center;background:#fff;border-radius:20px;padding:8px 18px;font-size:16px;color:var(--heading)}
+.ct h1{margin-top:28px;font-size:clamp(56px,7vw,96px);line-height:1.05;font-weight:300;letter-spacing:-.04em;color:var(--heading);animation:pfUp 1s cubic-bezier(.2,.7,.2,1) both}
+.ct-p{margin-top:24px;max-width:640px;font-size:19px;line-height:28.5px;color:var(--sec);animation:pfUp 1s cubic-bezier(.2,.7,.2,1) .15s both}
+.ct-list{margin-top:96px;display:flex;flex-direction:column;gap:48px;border-top:1px solid var(--subtle);padding-top:56px}
+.ct-item small{display:block;font-size:16px;color:var(--sec);margin-bottom:10px}
+.ct-item a{font-size:clamp(32px,4vw,52px);line-height:1.2;letter-spacing:-.02em;color:var(--heading);transition:opacity .3s ease}
+.ct-item a:hover{opacity:.6}
+.ct-soc{display:flex;flex-wrap:wrap;gap:18px 48px}
+.ct-soc a{font-size:22px;color:var(--heading);transition:opacity .3s ease}
+.ct-soc a:hover{opacity:.6}
+.eyebrow,.bl-eyebrow,.hl-eyebrow,.ct-eyebrow{position:relative;display:inline-flex;align-items:center;background:none;border-radius:0;padding:14px 26px;font-size:16px;line-height:24px;color:var(--heading)}
+.eyebrow::before,.bl-eyebrow::before,.hl-eyebrow::before,.ct-eyebrow::before{content:"";position:absolute;left:0;bottom:0;width:14px;height:14px;border-left:3px solid #e8604c;border-bottom:3px solid #e8604c}
+.eyebrow::after,.bl-eyebrow::after,.hl-eyebrow::after,.ct-eyebrow::after{content:"";position:absolute;right:0;top:0;width:14px;height:14px;border-right:3px solid #e8604c;border-top:3px solid #e8604c}
+.eyebrow .dot,.bl-eyebrow .dot,.hl-eyebrow .dot,.ct-eyebrow .dot{display:none}
+.hl .hl-eyebrow,.hl-head .hl-eyebrow,.ct .ct-eyebrow,.bl-hero .bl-eyebrow,.projects .eyebrow,.career .eyebrow{background:transparent;border-radius:0;box-shadow:none}
+#p-blog .bl-grid{max-width:960px;margin:0 auto;grid-auto-rows:240px}
+#p-blog .filters button:focus{outline:none}
+#p-blog .bl-card{height:240px;background:transparent;border-radius:16px;box-shadow:none}
+#p-blog .bl-card:hover{transform:none;box-shadow:none}
+#p-blog .bl-feature{height:auto}
+#p-blog .bl-visual,#p-blog .bl-feature .bl-visual{position:absolute;inset:0;height:auto;border-radius:16px}
+#p-blog .bl-badge{display:none}
+#p-blog .bl-body{position:absolute;left:14px;right:auto;bottom:14px;padding:0;gap:0;max-width:calc(100% - 28px);background:none}
+#p-blog .bl-meta,#p-blog .bl-tags,#p-blog .bl-body p{display:none}
+#p-blog .bl-body h2,#p-blog .bl-feature .bl-body h2{display:inline-flex;align-items:center;gap:14px;background:#f3f3f3;border-radius:28px;padding:16px 24px;font-size:18px;line-height:26px;color:var(--heading);opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+#p-blog .bl-body h2::after{content:"\2197";font-size:22px;line-height:1}
+#p-blog .bl-card:hover .bl-body h2{opacity:1;transform:none}
+.hl{margin-top:120px}
+.hl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.hl-eyebrow{display:inline-flex;align-items:center;background:#fff;border-radius:20px;padding:8px 18px;font-size:16px;color:var(--heading)}
+.hl-h2{margin-top:28px;font-size:clamp(40px,5vw,64px);line-height:1.1;font-weight:400;letter-spacing:-.02em;color:var(--heading)}
+.hl-p{margin-top:20px;max-width:640px;font-size:19px;line-height:28.5px;color:var(--sec)}
+.hl-btn{display:inline-flex;align-items:center;gap:12px;background:var(--heading);color:#fff;border-radius:40px;padding:22px 36px;font-size:20px;white-space:nowrap;transition:transform .3s ease,background-color .3s ease}
+.hl-btn:hover{transform:translateY(-3px);background:#000}
+.hl-strip{display:flex;gap:24px;overflow-x:auto;margin-top:64px;padding-bottom:12px;scrollbar-width:none}
+.hl-strip::-webkit-scrollbar{display:none}
+.hl-card{flex:0 0 340px;background:#fff;border-radius:20px;overflow:hidden;position:relative;color:var(--heading);transition:background-color .5s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
+.hl-card:hover{background:#2B2B2B;transform:translateY(-6px)}
+.hl-img{height:200px;border-radius:20px 20px 0 0}
+
+.hl-arrow{position:absolute;top:18px;right:18px;width:64px;height:64px;border-radius:50%;background:#2B2B2B;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;opacity:0;transform:scale(.5) rotate(-45deg);transition:opacity .4s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.hl-card:hover .hl-arrow{opacity:1;transform:none}
+.hl-info{padding:22px 24px 26px}
+.hl-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:15px;color:var(--sec)}
+.hl-pill{background:#2B2B2B;color:#fff;border-radius:20px;padding:6px 14px;font-size:14px;transition:background-color .4s ease,color .4s ease}
+.hl-card:hover .hl-pill{background:#fff;color:#222}
+.hl-card:hover .hl-row{color:#bbb}
+.hl-info h3{margin-top:16px;font-size:22px;line-height:30px;font-weight:400;transition:color .4s ease}
+.hl-card:hover .hl-info h3{color:#fff}
+@media (max-width:700px){.hl-card{flex-basis:80vw}}
+#p-about,#p-portfolio,#p-services,#p-blog{padding-bottom:40px}
+@media (max-width:1100px){
+  .links{display:none}
+  .hero .portrait{display:none}
+  .about{grid-template-columns:1fr}
+  .c-top{flex-direction:column}
+  .job{flex-direction:column}
+  .job .right{flex-basis:auto;align-items:flex-start}
+  .grid.r1,.grid.r2,.pgrid,.svc,.posts-list,.testi{grid-template-columns:1fr}
+  .why,.about-stats,.clients{grid-template-columns:1fr 1fr}
+  .foot .mid{grid-template-columns:1fr}
+}
+/* Finox parity fixes */
+:root{--arr:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23222' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'><path d='M4 12 12 4M5.5 4H12v6.5'/></svg>")}
+.nav{position:sticky;top:0;z-index:50;background:var(--bg);box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(0 -100vmax)}
+#about-sec{scroll-margin-top:110px}
+.arr{display:inline-block;width:.62em;height:.62em;margin-left:.35em;vertical-align:.04em;flex:0 0 auto}
+.hl-arrow .arr,.job .arrow .arr,.cur-arrow .arr{margin:0}
+.btn-dark{display:inline-flex;align-items:center;background:#2B2B2B;color:#fff;border-radius:40px;padding:18px 34px;font-size:18px;line-height:26px;transition:transform .3s ease,background-color .3s ease}
+.btn-dark:hover{background:#000;transform:translateY(-2px)}
+.about .p{grid-row:1;align-self:start;margin-top:98px}
+.about .about-arrow{grid-column:1;grid-row:2;align-self:end;justify-self:start;margin:0 0 40px 150px}
+.card .ico{display:flex;align-items:center;justify-content:center}
+.pt i{display:flex;align-items:center;justify-content:center}
+.projects .strip{width:100vw;margin-left:calc(50% - 50vw);margin-top:-24px;padding:24px 0 36px}
+.proj .t::after{content:"Case study";padding:6px 36px 6px 16px;background:var(--bg) var(--arr) no-repeat right 14px center/11px 11px}
+.c-left{flex:0 0 460px}
+.career .intro{margin-top:0}
+#p-blog .bl-body h2::after{content:"";width:14px;height:14px;flex:0 0 14px;background:var(--arr) center/contain no-repeat}
+.hl-arrow{display:none}
+.cur-arrow{position:fixed;left:0;top:0;z-index:60;pointer-events:none;will-change:transform}
+.cur-arrow span{display:flex;align-items:center;justify-content:center;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:#2B2B2B;color:#fff;font-size:34px;transform:scale(0);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.cur-arrow.on span{transform:scale(1)}
+@media (hover:none){.cur-arrow{display:none}}
+.foot .wm{margin-top:40px;font-size:clamp(80px,14vw,220px);line-height:1}
+.foot .track span{background:linear-gradient(180deg,#3a3a3a 0%,rgba(58,58,58,0) 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot .legal{position:relative;margin-top:-48px}
+#p-about .why .box .ph{width:48px!important;height:48px!important;border-radius:0!important;background:none center/contain no-repeat}
+#p-about .why .box:nth-child(1) .ph{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23222'><circle cx='12' cy='6.5' r='6'/><circle cx='12' cy='17.5' r='6'/><circle cx='6.5' cy='12' r='6'/><circle cx='17.5' cy='12' r='6'/></svg>")}
+#p-about .why .box:nth-child(2) .ph{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23222'><circle cx='7' cy='7' r='6.5'/><circle cx='17' cy='7' r='6.5'/><circle cx='7' cy='17' r='6.5'/><circle cx='17' cy='17' r='6.5'/></svg>")}
+#p-about .why .box:nth-child(3) .ph{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23222'><circle cx='12' cy='12' r='7'/><circle cx='19.5' cy='12' r='4.5'/><circle cx='15.75' cy='18.5' r='4.5'/><circle cx='8.25' cy='18.5' r='4.5'/><circle cx='4.5' cy='12' r='4.5'/><circle cx='8.25' cy='5.5' r='4.5'/><circle cx='15.75' cy='5.5' r='4.5'/></svg>")}
+#p-about .why .box:nth-child(4) .ph{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23222'><circle cx='12' cy='12' r='7.5'/><circle cx='20.2' cy='12' r='3.6'/><circle cx='17.8' cy='17.8' r='3.6'/><circle cx='12' cy='20.2' r='3.6'/><circle cx='6.2' cy='17.8' r='3.6'/><circle cx='3.8' cy='12' r='3.6'/><circle cx='6.2' cy='6.2' r='3.6'/><circle cx='12' cy='3.8' r='3.6'/><circle cx='17.8' cy='6.2' r='3.6'/></svg>")}
+#p-services .svc .box{position:relative}
+#p-services .svc .box::after{content:"";position:absolute;top:40px;right:40px;width:64px;height:64px;background:#222;-webkit-mask:var(--s) center/contain no-repeat;mask:var(--s) center/contain no-repeat;transition:background-color .4s ease}
+#p-services .svc .box.go:hover::after{background:#fff}
+#p-services .svc .box:nth-child(1){--s:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M2 3h3a9 9 0 010 18H2zM13 3a9 9 0 010 18z'/></svg>")}
+#p-services .svc .box:nth-child(2){--s:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 2l8 6 8-6 2 2-6 8 6 8-2 2-8-6-8 6-2-2 6-8-6-8z'/></svg>")}
+#p-services .svc .box:nth-child(3){--s:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M2 3c6 0 8 4 10 9 2-5 4-9 10-9v18c-6 0-8-4-10-9-2 5-4 9-10 9z'/></svg>")}
+#p-services .svc .box:nth-child(4){--s:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='7' cy='7' r='6.5'/><circle cx='17' cy='7' r='6.5'/><circle cx='7' cy='17' r='6.5'/><circle cx='17' cy='17' r='6.5'/></svg>")}
+#p-services .svc .box:nth-child(5){--s:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='2' y='2' width='20' height='9.5' rx='4.75'/><rect x='2' y='12.5' width='20' height='9.5' rx='4.75'/></svg>")}
+#p-services .svc .box:nth-child(6){--s:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 1c.7 6.2 4.8 10.3 11 11-6.2.7-10.3 4.800-11 11-.7-6.200-4.800-10.300-11-11 6.200-.7 10.300-4.800 11-11z'/></svg>")}
+@media (max-width:1100px){.about .about-arrow{display:none}.c-left{flex-basis:auto}}
+.proj-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:60px}
+.proj-head .u{font-size:18px;line-height:26px;white-space:nowrap;margin-bottom:10px;transition:opacity .3s ease}
+.proj-head .u:hover{opacity:.6}
+.career .intro{margin-top:112px}
+@media (max-width:1100px){.career .intro{margin-top:0}}
+/* Tools I Use: dark logo band */
+#p-about .tools-marq{position:relative;background:#050505;border-radius:24px;padding:76px 0}
+#p-about .tools-marq::before,#p-about .tools-marq::after{content:"";position:absolute;top:0;bottom:0;width:170px;z-index:2;pointer-events:none}
+#p-about .tools-marq::before{left:0;background:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)) 44px 50%/1px 56px no-repeat,linear-gradient(90deg,#050505 45px,rgba(5,5,5,0))}
+#p-about .tools-marq::after{right:0;background:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)) calc(100% - 44px) 50%/1px 56px no-repeat,linear-gradient(270deg,#050505 45px,rgba(5,5,5,0))}
+#p-about .tm-track{align-items:center;animation-duration:26s}
+#p-about .tm-track div{flex:0 0 auto;height:auto;margin-right:120px;background:none;border-radius:0;gap:14px;color:#fff;font-size:34px;line-height:44px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;opacity:.9;transition:opacity .3s ease}
+#p-about .tm-track div:hover{transform:none;box-shadow:none;opacity:1}
+#p-about .tm-track img{width:40px;height:40px;margin-right:0!important;filter:invert(1)}
+@media (max-width:700px){#p-about .tools-marq{padding:48px 0}#p-about .tm-track div{font-size:24px;margin-right:64px}#p-about .tm-track img{width:28px;height:28px}#p-about .tools-marq::before,#p-about .tools-marq::after{width:80px}}
+/* Selected Work rebuilt to match the template slider */
+.proj-head{margin-bottom:48px}
+.projects .strip{gap:28px;padding:0 0 12px;margin-top:0}
+.strip .proj{flex:0 0 clamp(300px,46.5vw,703px);max-width:none;background:none;border:0;border-radius:0;padding:0;box-shadow:none;transition:none}
+.strip .proj:hover,.js .strip .proj.in:hover{transform:none;box-shadow:none}
+.js .strip .proj.rv{opacity:1;transform:none;transition:none}
+.strip .proj .ph{position:relative;overflow:hidden;height:auto;aspect-ratio:703/440;border-radius:16px;padding:0;font-size:0;color:transparent;background:var(--c,#DCE6F2)}
+.strip .proj .ph::before{content:"";position:absolute;inset:0;z-index:2;background:rgba(0,0,0,.2);opacity:0;transition:opacity .45s ease}
+.strip .proj:hover .ph::before{opacity:1}
+.strip .proj .ph::after{content:"";position:absolute;left:50%;top:13%;width:29%;aspect-ratio:9/19;transform:translateX(-50%);border:7px solid #1b1b1b;border-radius:34px;box-shadow:0 30px 60px rgba(0,0,0,.18);transition:transform .7s cubic-bezier(.2,.7,.2,1);background:linear-gradient(#1b1b1b,#1b1b1b) 50% 2.5%/30% 3.2% no-repeat,linear-gradient(var(--c),var(--c)) 50% 16%/80% 24% no-repeat,linear-gradient(#e6e6e6,#e6e6e6) 22% 41%/55% 3.5% no-repeat,linear-gradient(#efefef,#efefef) 50% 47%/80% 2.6% no-repeat,linear-gradient(var(--c),var(--c)) 12% 62%/37% 16% no-repeat,linear-gradient(var(--c),var(--c)) 88% 62%/37% 16% no-repeat,linear-gradient(#efefef,#efefef) 50% 80%/80% 2.6% no-repeat,#fff}
+.strip .proj .ph[data-kind="web"]::after{top:17%;width:74%;aspect-ratio:16/11.5;border:0;border-radius:14px;background:linear-gradient(#1b1b1b,#1b1b1b) 0 0/100% 7% no-repeat,linear-gradient(#f1f1f1,#f1f1f1) 0 100%/18% 93% no-repeat,linear-gradient(var(--c),var(--c)) 29.5% 20%/22% 16% no-repeat,linear-gradient(var(--c),var(--c)) 62.8% 20%/22% 16% no-repeat,linear-gradient(var(--c),var(--c)) 96% 20%/22% 16% no-repeat,linear-gradient(#f1f1f1,#f1f1f1) 88% 72%/74% 42% no-repeat,#fff}
+.strip .proj:hover .ph::after{transform:translateX(-50%) translateY(-12px)}
+.strip .proj .t{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;margin-top:22px;padding:0;font-size:30px;line-height:40px;letter-spacing:-.01em}
+.strip .proj .t::after{display:none}
+.strip .proj .t small{font-size:15px;line-height:24px}
+.strip .proj .t em{font-size:18px;line-height:26px;font-weight:500;color:var(--heading)}
+@media (max-width:700px){.strip .proj .t{font-size:22px;line-height:30px}.strip .proj .ph::after{border-width:5px;border-radius:22px}}
+#p-about .tools-marq{width:100vw;margin-left:calc(50% - 50vw);border-radius:0}
+.strip .proj .ph::after{box-shadow:0 18px 40px rgba(0,0,0,.1)}
+/* Hero: label, line and year on one vertical axis */
+.hero .vlabel,.hero .vyear{left:10px}
+.hero .rule{left:10px;top:326px;height:486px;background:rgba(43,43,43,.28)}
+/* Home About aligned to the template */
+.about{min-height:0;padding-bottom:20px}
+.about .p{margin-top:80px}
+.about .about-photo{justify-self:center}
+.about .pts{justify-self:stretch;width:auto;gap:36px;margin-bottom:64px}
+.pt i{flex:0 0 34px;height:34px;background:#222}
+.pt span{font-size:19px;line-height:28.5px}
+.card .ico{width:64px;height:64px;background:linear-gradient(180deg,#fff 0%,#E4E4E4 100%);border-top:1px solid #2B2B2B}
+.card .big{color:#000}
+.card .lbl{font-size:18px;line-height:27px}
+.about .about-arrow{width:190px;height:170px;margin:0 0 30px 215px;stroke:#E9E9E9}
+@media (max-width:1100px){.about .about-photo{justify-self:start}.about .pts{margin-bottom:0}}
+/* Tools I Use: two grouped rows */
+#p-about .tools-marq{padding:64px 0}
+#p-about .tm-track{animation-duration:110s}
+#p-about .tm-track + .tm-track{margin-top:44px;animation-direction:reverse}
+#p-about .tm-track div{font-size:30px;line-height:40px;margin-right:96px}
+#p-about .tm-track img{width:36px;height:36px}
+#p-about .tools-marq::before{background:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)) 44px 50%/1px 60% no-repeat,linear-gradient(90deg,#050505 45px,rgba(5,5,5,0))}
+#p-about .tools-marq::after{background:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)) calc(100% - 44px) 50%/1px 60% no-repeat,linear-gradient(270deg,#050505 45px,rgba(5,5,5,0))}
+@media (max-width:700px){#p-about .tm-track div{font-size:22px;line-height:30px;margin-right:56px}#p-about .tm-track img{width:26px;height:26px}#p-about .tm-track + .tm-track{margin-top:28px}}
+/* Real project covers */
+.strip .proj .ph.has-img{background-size:cover;background-position:center}
+.strip .proj .ph.has-img::after{display:none}
+.pgrid .ph.has-img{background-size:cover;background-position:center;font-size:0;color:transparent}
+#p-portfolio .pgrid a.has-img::after{display:none}
+#p-portfolio .pgrid .ph{height:auto;aspect-ratio:703/440}
+/* Contact card: collage of project covers behind the text */
+.ctacard{position:relative;overflow:hidden;background:#1b1b1b url('assets/cta-bg.jpg') center/cover no-repeat}
+.ctacard::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(18,18,18,.86) 0%,rgba(18,18,18,.8) 55%,rgba(18,18,18,.66) 100%),rgba(18,18,18,.5)}
+.ctacard>*{position:relative}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <a class="logo" href="#/" style="width:200px"><i></i><b></b><span>Mariam Kamel</span></a>
+    <nav class="links">
+      <a href="#/about" data-go="about">About Me</a><a href="#/portfolio" data-go="portfolio">Portfolio</a><a href="#/services" data-go="services">Services</a><a href="#/blog" data-go="blog">Blog</a>
+    </nav>
+    <a class="u" href="https://wa.me/201280810892" target="_blank" rel="noopener">Book A Call ↗</a>
+  </header>
+
+  <!-- HOME -->
+  <main class="page" id="p-home">
+    <section class="hero">
+      <span class="vlabel">Product Designer</span>
+      <span class="vyear">2026</span>
+      <div class="rule"></div>
+      <div class="content">
+        <div class="stats">
+          <div class="stat"><div class="v">5+</div><div class="l">Years of product design</div></div>
+          <div class="stat"><div class="v">4.5</div><div class="l">Years fully remote</div></div>
+        </div>
+        <h1>Hello</h1>
+        <p class="sub">— Mariam Kamel, Senior Product Designer</p>
+      </div>
+      <button type="button" class="scroll" id="scrolldown">Scroll down ↓</button>
+      <div class="ph portrait" style="background:url('assets/portrait.png') center/cover no-repeat"></div>
+    </section>
+
+    <section class="about rv-group" id="about-sec">
+      <h2 class="h2">About Me</h2>
+      <svg class="about-arrow" viewBox="0 0 180 160" width="180" height="160" fill="none" stroke="#E4E4E4" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 150C20 80 80 30 165 22"/><path d="M125 8l43 14-33 30"/></svg>
+      <div class="about-l">
+        <p class="p">I design SaaS, fintech and EdTech products that are clear to use and easy to build. I work closely with product managers, engineers and researchers to turn user insights into decisions.</p>
+        <div class="pts">
+          <div class="pt"><i><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff" aria-hidden="true"><path d="M12 2c.6 5.600 4.400 9.400 10 10-5.600.6-9.400 4.400-10 10-.6-5.600-4.400-9.400-10-10 5.600-.6 9.400-4.400 10-10z"/></svg></i><span>With 5+ years of experience designing web and mobile products, I focus on intuitive, user-focused experiences that solve real problems.</span></div>
+          <div class="pt"><i><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" fill="#fff" stroke="none"/></svg></i><span>I run usability tests every release cycle and build design systems that keep product teams and engineers working from one source of truth.</span></div>
+        </div>
+      </div>
+      <div class="ph about-photo" style="background:url('assets/portrait.png') center 20%/cover no-repeat"></div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#222" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.800 0 18M12 3c-3 3.200-3 14.800 0 18"/></svg></div>
+        <div class="big">5+</div>
+        <div class="lbl">Years designing SaaS, fintech and EdTech products</div>
+        <div class="ph" style="background:url('assets/portrait.png') center 20%/cover no-repeat"></div>
+      </div>
+    </section>
+
+    <section class="projects">
+      <div class="eyebrow"><span class="dot"></span>Projects</div>
+      <div class="proj-head"><h2 class="h2">Selected Work</h2><a class="u" href="#/portfolio">See more ↗</a></div>
+      <div class="strip" id="strip">
+        <div class="proj" data-href="https://www.behance.net/gallery/256606643/AI-Fashion-Stylist-Shopping-App-UIUX-Case-Study"><div class="ph">AI Fashion Stylist &amp; Shopping App</div><div class="t">AI Fashion Stylist &amp; Shopping App <small>For</small> <em>Anouq</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/256599119/E-Learning-Platform-UIUX-Case-Study"><div class="ph">E-Learning Platform UI/UX</div><div class="t">E-Learning Platform UI/UX <small>For</small> <em>Almawarid</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/256559643/Islamic-Learning-App-UXUI-Design"><div class="ph">Islamic Learning App – UX/UI</div><div class="t">Islamic Learning App – UX/UI <small>For</small> <em>NUSSUK Academy</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/256510635/Trading-Education-App-Website-UXUI"><div class="ph">Trading Education App &amp; Website</div><div class="t">Trading Education App &amp; Website <small>For</small> <em>CQBS (القبطان)</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/256452263/4Business-Business-Marketplace-Mobile-App-UIUX"><div class="ph">4Business – Business Marketplace App</div><div class="t">4Business – Business Marketplace App <small>For</small> <em>4Business</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/256450737/Food-Ordering-App-Website-UIUX-Case-Study"><div class="ph">Food Ordering App &amp; Website</div><div class="t">Food Ordering App &amp; Website <small>For</small> <em>Tojarii (تُجاري)</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/256327869/Job-Search-Recruitment-Mobile-App-UIUX-Case-Study"><div class="ph">Job Search &amp; Recruitment App</div><div class="t">Job Search &amp; Recruitment App <small>For</small> <em>4Jobs</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/254059837/Zahra-Al-Mahna-E-Learning-Platform-UIUX-Case-Study"><div class="ph">Zahra Al Mahna – E-Learning Platform</div><div class="t">Zahra Al Mahna – E-Learning Platform <small>For</small> <em>Zahra AlMahna</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/256313931/Mejwal-E-Commerce-Mobile-App-UIUX-Case-Study"><div class="ph">Mejwal – E-Commerce Mobile App</div><div class="t">Mejwal – E-Commerce Mobile App <small>For</small> <em>Mejwal</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/256311151/Al-Sayer-Soft-Drinks-E-commerce-UIUX-Case-Study"><div class="ph">Al-Sayer Soft Drinks E-commerce</div><div class="t">Al-Sayer Soft Drinks E-commerce <small>For</small> <em>Al-Sayer Factory</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/256308553/Online-Fitness-Club-App-Website-UIUX-Case-Study"><div class="ph">Online Fitness Club App &amp; Website</div><div class="t">Online Fitness Club App &amp; Website <small>For</small> <em>ALAMANI</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/255756821/Mobile-Banking-app-UIUX-Case-Study"><div class="ph">Mobile Banking App</div><div class="t">Mobile Banking App <small>For</small> <em>Mobile Banking</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/255695167/Beauty-Business-Control-App-UIUX-Case-Study"><div class="ph">Beauty Business Control App</div><div class="t">Beauty Business Control App <small>For</small> <em>Glow Up</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/255650407/Hospital-Work-Order-System-Arabic-Enterprise-UX"><div class="ph">Hospital Work Order System</div><div class="t">Hospital Work Order System <small>For</small> <em>Prince Abdulmohsen Hospital</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/255621861/POS-Inventory-Accounting-Dashboard-Case-Study"><div class="ph">POS Inventory &amp; Accounting Dashboard</div><div class="t">POS Inventory &amp; Accounting Dashboard <small>For</small> <em>Silky Systems</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/258286395/Alexander-E-Learning-App-Website-UIUX-Case-Study"><div class="ph">Alexander – E-Learning App &amp; Website</div><div class="t">Alexander – E-Learning App &amp; Website <small>For</small> <em>Alexander</em></div></div>
+        <div class="proj" data-href="https://www.behance.net/gallery/258301229/Cleo-Salon-Booking-App-for-Customers-Staff-Owners"><div class="ph">Cleo Salon Booking App</div><div class="t">Cleo Salon Booking App <small>For</small> <em>Cleo Salon</em></div></div>
+      </div>
+    </section>
+
+    <section class="career">
+      
+      <div class="c-top">
+        <div class="c-left"><div class="eyebrow"><span class="dot"></span>Experiences</div><h2 class="h2">Explore My Design Journey</h2></div>
+        <div class="intro">
+          <p>Over the past 5+ years, I’ve worked across fintech, EdTech, ERP and marketplace products, collaborating with product, engineering and research teams in Egypt, France, Ukraine and remotely.</p>
+          <a class="u" href="https://wa.me/201280810892" target="_blank" rel="noopener">Book A Call ↗</a> &nbsp; <a class="u" href="https://drive.google.com/file/d/1DSVsnQSRo4v8hrpWlK3IwKFkKUFIyKdx/view?usp=sharing" target="_blank" rel="noopener">Download CV ↗</a>
+        </div>
+      </div>
+      <div class="jobs">
+        <div class="job"><div class="left"><div class="co">Trust Sourcing</div><div class="cdesc">Technology outsourcing company founded in 2005 as part of Cygility Inc, headquartered in the US, with an office in Kyiv.</div><div class="dt">Dec 2024 – Present · Kyiv, Ukraine (Remote)</div><p class="jd">Forex education and trading platform. Rebuilt the core trading experience for first-time traders, designed an AI-personalized learning path and built the product’s design system.</p><div class="more"><div class="pics"><div class="ph"></div><div class="ph"></div><div class="ph"></div></div></div></div><div class="right"><div class="tags"><span class="pill dark">Fintech</span><span class="pill dark">Design Systems</span></div><div class="role">Senior Product Designer</div><div class="arrow">↗</div></div></div>
+        <div class="job"><div class="left"><div class="co">Helptk</div><div class="cdesc">Software development company providing app and website development, POS systems, project management tools and digital marketing for the Saudi and Egyptian markets.</div><div class="dt">Nov 2023 – Dec 2024 · Cairo, Egypt (On-site)</div><p class="jd">Led the redesign of the company’s flagship product, increased user engagement by 20%, and introduced the company’s first design system and style guide.</p><div class="more"><div class="pics"><div class="ph"></div><div class="ph"></div><div class="ph"></div></div></div></div><div class="right"><div class="tags"><span class="pill">SaaS</span><span class="pill">Design System</span></div><div class="role">Product Designer</div><div class="arrow">↗</div></div></div>
+        <div class="job"><div class="left"><div class="co">KIRO Travel</div><div class="cdesc">Shuttle and special-needs transportation services, running a passenger transport booking platform.</div><div class="dt">Mar 2021 – Oct 2023 · France (Remote)</div><p class="jd">Designed a single control panel for customers, employees and partners, and redesigned the company website end-to-end.</p><div class="more"><div class="pics"><div class="ph"></div><div class="ph"></div><div class="ph"></div></div></div></div><div class="right"><div class="tags"><span class="pill">UX Research</span><span class="pill">Web Design</span></div><div class="role">UI/UX Designer</div><div class="arrow">↗</div></div></div>
+        <div class="job"><div class="left"><div class="co">Digital Creativity Company</div><div class="cdesc">Software development company in Heliopolis, Cairo, with over 16 years of experience in mobile apps, UI/UX, hosting, branding and business consulting.</div><div class="dt">Jun 2021 – Aug 2021 · Cairo, Egypt (Internship, On-site)</div><p class="jd">Ran the full design cycle on mobile apps, from user research to UI, and translated requirements into style guides and design patterns.</p><div class="more"><div class="pics"><div class="ph"></div><div class="ph"></div><div class="ph"></div></div></div></div><div class="right"><div class="tags"><span class="pill">Mobile Apps</span><span class="pill">UI/UX</span></div><div class="role">UI/UX Designer (Internship)</div><div class="arrow">↗</div></div></div>
+        <div class="job"><div class="left"><div class="co">Karma Group</div><div class="dt">Aug 2020 – Jun 2021 · New Nozha, Cairo, Egypt (On-site)</div><p class="jd">Designed brand and campaign assets across print and digital, within established brand guidelines.</p><div class="more"><div class="pics"><div class="ph"></div><div class="ph"></div><div class="ph"></div></div></div></div><div class="right"><div class="tags"><span class="pill">Branding</span><span class="pill">Print &amp; Digital</span></div><div class="role">Graphic Designer</div><div class="arrow">↗</div></div></div>
+        <div class="job"><div class="left"><div class="co">Smart Academy</div><div class="dt">Jul 2018 – Jun 2020 · 6th of October, Egypt (On-site)</div><p class="jd">Created and managed social media campaigns, content calendars and social media advertising for various clients.</p><div class="more"><div class="pics"><div class="ph"></div><div class="ph"></div><div class="ph"></div></div></div></div><div class="right"><div class="tags"><span class="pill">Digital Marketing</span><span class="pill">Social Media</span></div><div class="role">Digital Marketing Specialist</div><div class="arrow">↗</div></div></div>
+      </div>
+      <div style="margin-top:80px"><h2 class="h2">Licenses &amp; Certifications</h2><div style="margin-top:40px"><div class="award"><span class="y">2026</span><span>AI for Designers</span><span>Interaction Design Foundation (IxDF)</span><span></span></div><div class="award"><span class="y">2022</span><span>Google UX Design Professional Certificate</span><span>Coursera</span><span></span></div><div class="award"><span class="y">2022</span><span>Marketing Strategy</span><span>Coursera</span><span></span></div><div class="award"><span class="y">2021</span><span>User Experience (UX) Design</span><span>Edraak</span><span></span></div><div class="award"><span class="y">2021</span><span>UX Design Fundamentals</span><span>MaharaTech – ITI</span><span></span></div><div class="award"><span class="y">2019</span><span>Graphic Designer Diploma</span><span>YAT Learning Centers</span><span></span></div></div></div>
+    </section>
+
+    <section class="ctaband" id="contact">
+      <div class="ctacard">
+        <div class="e">(Let’s Work Together)</div>
+        <h3>Have a product idea or a design challenge?</h3>
+        <p>Tell me about your product and let’s figure out how to make it clearer, simpler and more useful for users.</p>
+        <div style="margin-top:40px;display:flex;gap:32px;justify-content:center;flex-wrap:wrap"><a href="https://wa.me/201280810892" target="_blank" rel="noopener" style="margin-top:0">Let’s talk on WhatsApp ↗</a><a href="#" class="copymail" style="margin-top:0">Send me an email ↗</a></div>
+      </div>
+    </section>
+
+    <section class="blog" hidden>
+      <div class="tag"><span><i class="dot"></i>Blogs</span></div>
+      <h2 class="h2">Design Insights &amp; Trends</h2>
+      <div class="grid r1">
+        <a class="post" href="#/blog"><div class="tt">Digital marketing is evolving at a breakneck</div></a>
+        <a class="post" href="#/blog"><div class="tt">Why Your Website Isn’t Converting</div></a>
+      </div>
+      <div class="grid r2">
+        <a class="post" href="#/blog"><div class="tt">4 Ways to increase your website traffic</div></a>
+        <a class="post" href="#/blog"><div class="tt">Top AI apps right now: Design Edition</div></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ABOUT -->
+  <main class="page" id="p-about" hidden>
+    <section class="ph-hero">
+      <h1>Hello There 👋 I’m Mariam Kamel</h1>
+      <p>Senior Product Designer with 5+ years of experience designing SaaS, ERP, CRM, e-commerce, fintech and EdTech platforms. Four and a half years fully remote with teams in France and Ukraine.</p>
+      <a class="btn-dark" href="#/contact" style="margin-top:32px">Let’s talk ↗</a>
+    </section>
+    <section>
+      <div class="about-stats">
+        <div class="box"><div class="n">5+</div><div class="l">Years of product design experience</div></div>
+        <div class="box"><div class="n">4.5</div><div class="l">Years working fully remote with international teams</div></div>
+        <div class="box"><div class="n">6</div><div class="l">Roles across product design, UI/UX and marketing</div></div>
+      </div>
+      <div class="testi">
+        <div><div class="who">Core Skills</div><div class="pillset"><span>Figma</span><span>Design Systems</span><span>User Research</span><span>Usability Testing</span><span>Prototyping</span><span>Information Architecture</span><span>UI Design</span><span>Mobile App Design</span><span>Data Visualization</span><span>Branding &amp; Identity</span></div></div>
+        <div><div><div class="who">Languages</div><div style="margin-top:12px">Arabic — Native</div><div style="margin-top:6px">English — Professional working proficiency</div></div></div>
+      </div>
+    </section>
+    <section style="margin-top:120px">
+      <div class="eyebrow" style="margin-bottom:24px"><span class="dot"></span>My Journey</div>
+      <h2 class="h2">My Design Journey</h2>
+      <p style="margin-top:24px;max-width:900px">I started in digital marketing and graphic design in Cairo, then moved into UI/UX and product design, working on web and mobile products for teams in Egypt, France and Ukraine.</p>
+    </section>
+    <section style="margin-top:120px">
+      <h2 class="h2">Why You Will Work With Me</h2>
+      <p style="margin-top:24px;max-width:900px">Every design decision is backed by user research, clear product thinking and a design system that keeps teams moving.</p>
+      <div class="why">
+        <div class="box"><div class="ph" style="height:40px;width:40px;border-radius:50%"></div><h4>User Research</h4><p style="margin-top:12px">Usability sessions every release cycle, with findings fed into the roadmap alongside product managers.</p></div>
+        <div class="box"><div class="ph" style="height:40px;width:40px;border-radius:50%"></div><h4>Design Systems</h4><p style="margin-top:12px">Built and maintained design systems that ended visual drift and shortened the path from design to development.</p></div>
+        <div class="box"><div class="ph" style="height:40px;width:40px;border-radius:50%"></div><h4>Product Thinking</h4><p style="margin-top:12px">Simplified complex trading, ERP and dashboard experiences into clear next actions for users.</p></div>
+        <div class="box"><div class="ph" style="height:40px;width:40px;border-radius:50%"></div><h4>Remote Collaboration</h4><p style="margin-top:12px">Four and a half years working with product, engineering and design teams across France, Ukraine and Egypt.</p></div>
+      </div>
+    </section>
+    <section style="margin-top:120px">
+      <h2 class="h2">Licenses &amp; Certifications</h2>
+      <div style="margin-top:40px">
+        <div class="award"><span class="y">2026</span><span>AI for Designers</span><span>Interaction Design Foundation (IxDF)</span><span></span></div>
+        <div class="award"><span class="y">2022</span><span>Google UX Design Professional Certificate</span><span>Coursera</span><span></span></div>
+        <div class="award"><span class="y">2022</span><span>Marketing Strategy</span><span>Coursera</span><span></span></div>
+        <div class="award"><span class="y">2021</span><span>User Experience (UX) Design</span><span>Edraak</span><span></span></div><div class="award"><span class="y">2021</span><span>UX Design Fundamentals</span><span>MaharaTech – ITI</span><span></span></div><div class="award"><span class="y">2019</span><span>Graphic Designer Diploma</span><span>YAT Learning Centers</span><span></span></div>
+      </div>
+    </section>
+    <section style="margin-top:120px">
+      <h2 class="h2">Tools I Use</h2>
+      <div class="tools-marq" id="tools"></div>
+    </section>
+  </main>
+
+  <!-- PORTFOLIO -->
+  <main class="page" id="p-portfolio" hidden>
+    <section class="ph-hero">
+      <h1>Exploring My Design Portfolio Creative Solutions</h1>
+    </section>
+    <div class="filters" id="filters">
+      <button class="on" data-f="all">All</button>
+      <button data-f="mobile">Mobile App</button>
+      <button data-f="web">Website</button>
+      <button data-f="ecom">E-commerce</button>
+    </div>
+    <div class="pgrid" id="pgrid">
+      <a data-cat="mobile" href="https://www.behance.net/gallery/256606643/AI-Fashion-Stylist-Shopping-App-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · Anouq. An AI-powered styling and shopping experience. View case study ↗">AI Fashion Stylist</div><div class="t">AI Fashion Stylist &amp; Shopping App</div><div class="c2">Mobile App · Anouq</div></a>
+      <a data-cat="web" href="https://www.behance.net/gallery/256599119/E-Learning-Platform-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · Almawarid. An e-learning mobile app, website and dashboards for a training institute. View case study ↗">Almawarid</div><div class="t">E-Learning Platform UI/UX</div><div class="c2">Mobile App · Almawarid</div></a>
+      <a data-cat="mobile" href="https://www.behance.net/gallery/256559643/Islamic-Learning-App-UXUI-Design" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · NUSSUK Academy. An Islamic learning app for Hajj and Umrah. View case study ↗">Islamic Learning</div><div class="t">Islamic Learning App – UX/UI</div><div class="c2">Mobile App · NUSSUK Academy</div></a>
+      <a data-cat="web" href="https://www.behance.net/gallery/256510635/Trading-Education-App-Website-UXUI" target="_blank" rel="noopener"><div class="ph" data-back="Website · CQBS. A trading education academy. View case study ↗">Trading Education</div><div class="t">Trading Education App &amp; Website</div><div class="c2">Website · CQBS</div></a>
+      <a data-cat="mobile" href="https://www.behance.net/gallery/256452263/4Business-Business-Marketplace-Mobile-App-UIUX" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · 4Business. A marketplace for buying, selling and renting ready-made businesses. View case study ↗">4Business</div><div class="t">4Business – Business Marketplace App</div><div class="c2">Mobile App · 4Business</div></a>
+      <a data-cat="ecom" href="https://www.behance.net/gallery/256450737/Food-Ordering-App-Website-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="E-commerce · Tojarii. A food ordering app and website. View case study ↗">Food Ordering</div><div class="t">Food Ordering App &amp; Website</div><div class="c2">E-commerce · Tojarii</div></a>
+      <a data-cat="mobile" href="https://www.behance.net/gallery/254059837/Zahra-Al-Mahna-E-Learning-Platform-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · Zahra AlMahna. An Arabic EdTech app for high school students. View case study ↗">Zahra AlMahna</div><div class="t">Zahra Al Mahna – E-Learning Platform</div><div class="c2">Mobile App · Zahra AlMahna</div></a>
+      <a data-cat="ecom" href="https://www.behance.net/gallery/256313931/Mejwal-E-Commerce-Mobile-App-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="E-commerce · Mejwal. A mobile app for products from different countries. View case study ↗">Mejwal</div><div class="t">Mejwal – E-Commerce Mobile App</div><div class="c2">E-commerce · Mejwal</div></a>
+      <a data-cat="ecom" href="https://www.behance.net/gallery/256311151/Al-Sayer-Soft-Drinks-E-commerce-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="E-commerce · Al-Sayer Factory. An online store for a soft drinks factory. View case study ↗">Al-Sayer</div><div class="t">Al-Sayer Soft Drinks E-commerce</div><div class="c2">E-commerce · Al-Sayer Factory</div></a>
+      <a data-cat="mobile" href="https://www.behance.net/gallery/256308553/Online-Fitness-Club-App-Website-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · ALAMANI. An online fitness club app and website. View case study ↗">ALAMANI</div><div class="t">Online Fitness Club App &amp; Website</div><div class="c2">Mobile App · ALAMANI</div></a>
+      <a data-cat="mobile" href="https://www.behance.net/gallery/255756821/Mobile-Banking-app-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · Banking. A mobile banking app with a full design system. View case study ↗">Mobile Banking</div><div class="t">Mobile Banking App</div><div class="c2">Mobile App · Banking</div></a>
+      <a data-cat="mobile" href="https://www.behance.net/gallery/255695167/Beauty-Business-Control-App-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · Glow Up. A beauty services provider app. View case study ↗">Glow Up</div><div class="t">Beauty Business Control App</div><div class="c2">Mobile App · Glow Up</div></a>
+      <a data-cat="web" href="https://www.behance.net/gallery/255650407/Hospital-Work-Order-System-Arabic-Enterprise-UX" target="_blank" rel="noopener"><div class="ph" data-back="Website · Hospital. A work order and maintenance dashboard for a hospital. View case study ↗">Hospital Dashboard</div><div class="t">Hospital Work Order System</div><div class="c2">Website · Hospital</div></a>
+      <a data-cat="web" href="https://www.behance.net/gallery/255621861/POS-Inventory-Accounting-Dashboard-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="Website · Silky Systems. A POS and inventory accounting dashboard. View case study ↗">POS Dashboard</div><div class="t">POS Inventory &amp; Accounting Dashboard</div><div class="c2">Website · Silky Systems</div></a>
+      <a data-cat="mobile" href="https://www.behance.net/gallery/258286395/Alexander-E-Learning-App-Website-UIUX-Case-Study" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · Alexander. An Arabic educational app and website. View case study ↗">Alexander</div><div class="t">Alexander – E-Learning App &amp; Website</div><div class="c2">Mobile App · Alexander</div></a>
+      <a data-cat="mobile" href="https://www.behance.net/gallery/258301229/Cleo-Salon-Booking-App-for-Customers-Staff-Owners" target="_blank" rel="noopener"><div class="ph" data-back="Mobile app · Cleo Salon. A salon booking app for customers, staff and owners. View case study ↗">Cleo Salon</div><div class="t">Cleo Salon Booking App</div><div class="c2">Mobile App · Cleo Salon</div></a>
+    </div>
+  </main>
+
+  <!-- SERVICES -->
+  <main class="page" id="p-services" hidden>
+    <section class="ph-hero">
+      <h1>What I Do Best</h1>
+      <p>I specialize in turning complex problems into elegant solutions. My approach blends creativity with strategic thinking.</p>
+    </section>
+    <section class="svc">
+      <div class="box"><h3>UI/UX Design</h3><p>Crafting intuitive, user-focused digital experiences that boost engagement.</p></div>
+      <div class="box"><h3>Branding</h3><p>Building memorable brand identities that communicate your vision with clarity.</p></div>
+      <div class="box"><h3>Graphic Design</h3><p>Creating visually compelling designs that elevate your message and capture attention.</p></div>
+      <div class="box"><h3>Web Development</h3><p>Developing high-performing, responsive websites tailored to your business goals.</p></div>
+      <div class="box"><h3>Marketing</h3><p>Driving growth through strategic marketing solutions that connect you with your audience.</p></div>
+      <div class="box"><h3>Motion</h3><p>Bringing ideas to life with dynamic motion graphics that enhance storytelling.</p></div>
+    </section>
+    <section class="feat">
+      <div><h3>Have a project in mind?</h3><p>Tell me about it and let’s figure out the best way to bring it to life.</p></div>
+      <a href="https://wa.me/201280810892" target="_blank" rel="noopener">Book A Call ↗</a>
+    </section>
+  </main>
+
+  <!-- BLOG -->
+  <main class="page" id="p-blog" hidden>
+    <section class="bl-hero">
+      <div class="bl-eyebrow"><span class="dot"></span>Our Blog</div>
+      <h1>Notes on Product Design</h1>
+      <p>Practical articles on UI/UX, design systems and product thinking, drawn from projects in fintech, EdTech, ERP and marketplaces.</p>
+    </section>
+    <div class="filters bl-filters">
+      <button class="on" data-f="all">All</button><button data-f="product">Product Design</button><button data-f="ui">UI/UX</button><button data-f="systems">Design Systems</button><button data-f="process">Process</button>
+    </div>
+    <div class="bl-grid">
+      <article class="bl-card bl-feature" data-cat="systems"><div class="bl-visual v1"><span class="bl-badge">Featured</span></div><div class="bl-body"><div class="bl-meta">Design Systems · 6 min read · Oct 2026</div><h2>Why Product Designers Should Own the Design System</h2><p>How one shared source of truth ended visual drift, shortened the path to development and kept every release consistent.</p><p>When every screen was designed from scratch, small differences in spacing, colour and button states piled up. Developers rebuilt the same components again and again, and reviews turned into arguments about pixels instead of user needs.</p><p>Owning the design system as a product designer changed that. I built a single Figma library with tokens, components and usage rules, then tied each component to its code counterpart so both sides spoke the same language. The result was fewer handoff questions, faster sprints and a product that looked and behaved like one piece.</p><p>My advice: start small with buttons, inputs and typography, document every decision, and treat the system as a product with its own backlog and users.</p><div class="bl-tags"><span>Design Systems</span><span>Process</span></div></div></article>
+      <article class="bl-card" data-cat="ui"><div class="bl-visual v2"></div><div class="bl-body"><div class="bl-meta">UI/UX · 7 min read · Sep 2026</div><h2>Designing for First-Time Traders</h2><p>Reducing information overload so a beginner understands risk before the first simulated trade.</p><div class="bl-tags"><span>Fintech</span><span>UX Research</span></div></div></article>
+      <article class="bl-card" data-cat="process"><div class="bl-visual v3"></div><div class="bl-body"><div class="bl-meta">Process · 5 min read · Aug 2026</div><h2>Usability Testing Every Release Cycle</h2><p>A lightweight routine that keeps findings flowing into the roadmap without slowing the team down.</p><div class="bl-tags"><span>Research</span><span>Usability</span></div></div></article>
+      <article class="bl-card" data-cat="process"><div class="bl-visual v4"></div><div class="bl-body"><div class="bl-meta">Process · 4 min read · Jul 2026</div><h2>Accessibility From the Wireframe Stage</h2><p>Catching contrast, hierarchy and flow problems early is far cheaper than fixing them after build.</p><div class="bl-tags"><span>Accessibility</span><span>Wireframes</span></div></div></article>
+      <article class="bl-card" data-cat="ui"><div class="bl-visual v5"></div><div class="bl-body"><div class="bl-meta">UI/UX · 5 min read · Jun 2026</div><h2>Dashboards That Answer One Question</h2><p>Turning ERP and HR data into a clear next action instead of another table to read.</p><div class="bl-tags"><span>ERP</span><span>Dashboards</span></div></div></article>
+      <article class="bl-card" data-cat="product"><div class="bl-visual v6"></div><div class="bl-body"><div class="bl-meta">Product Design · 8 min read · May 2026</div><h2>Mobile Marketplaces: Lessons From Four Projects</h2><p>What I learned designing buying, selling and booking flows for mobile marketplaces.</p><div class="bl-tags"><span>Mobile</span><span>E-commerce</span></div></div></article>
+    </div>
+    <section class="bl-cta"><h3>Have a product that needs clearer design?</h3><p>Tell me about it and let’s figure out the next step together.</p><a href="#/services">Book A Call ↗</a></section>
+    <section class="hl">
+      <div class="hl-head">
+        <div>
+          <span class="hl-eyebrow"><span class="dot"></span>Highlights projects</span>
+          <h2 class="hl-h2">Case Studies &amp; Project Highlights</h2>
+          <p class="hl-p">Selected case studies from recent projects, covering the challenges I faced, the design decisions I made and the outcomes they led to.</p>
+        </div>
+        
+      </div>
+      <div class="hl-strip">
+        <a class="hl-card" href="https://www.behance.net/gallery/256606643/AI-Fashion-Stylist-Shopping-App-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v1"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>Anouq</span></div><h3>AI Fashion Stylist &amp; Shopping App</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/256599119/E-Learning-Platform-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v2"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Website</span><span>Almawarid</span></div><h3>E-Learning Platform UI/UX</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/256559643/Islamic-Learning-App-UXUI-Design" target="_blank" rel="noopener"><div class="hl-img v3"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>NUSSUK Academy</span></div><h3>Islamic Learning App – UX/UI</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/256510635/Trading-Education-App-Website-UXUI" target="_blank" rel="noopener"><div class="hl-img v4"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Website</span><span>CQBS</span></div><h3>Trading Education App &amp; Website</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/256452263/4Business-Business-Marketplace-Mobile-App-UIUX" target="_blank" rel="noopener"><div class="hl-img v5"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>4Business</span></div><h3>4Business – Business Marketplace App</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/256450737/Food-Ordering-App-Website-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v6"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">E-commerce</span><span>Tojarii</span></div><h3>Food Ordering App &amp; Website</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/256327869/Job-Search-Recruitment-Mobile-App-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v1"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>4Jobs</span></div><h3>Job Search &amp; Recruitment App</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/254059837/Zahra-Al-Mahna-E-Learning-Platform-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v1"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>Zahra AlMahna</span></div><h3>Zahra Al Mahna – E-Learning Platform</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/256313931/Mejwal-E-Commerce-Mobile-App-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v2"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">E-commerce</span><span>Mejwal</span></div><h3>Mejwal – E-Commerce Mobile App</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/256311151/Al-Sayer-Soft-Drinks-E-commerce-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v3"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">E-commerce</span><span>Al-Sayer Factory</span></div><h3>Al-Sayer Soft Drinks E-commerce</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/256308553/Online-Fitness-Club-App-Website-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v4"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>ALAMANI</span></div><h3>Online Fitness Club App &amp; Website</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/255756821/Mobile-Banking-app-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v5"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>Banking</span></div><h3>Mobile Banking App</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/255695167/Beauty-Business-Control-App-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v6"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>Glow Up</span></div><h3>Beauty Business Control App</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/255650407/Hospital-Work-Order-System-Arabic-Enterprise-UX" target="_blank" rel="noopener"><div class="hl-img v1"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Website</span><span>Hospital</span></div><h3>Hospital Work Order System</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/255621861/POS-Inventory-Accounting-Dashboard-Case-Study" target="_blank" rel="noopener"><div class="hl-img v2"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Website</span><span>Silky Systems</span></div><h3>POS Inventory &amp; Accounting Dashboard</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/258286395/Alexander-E-Learning-App-Website-UIUX-Case-Study" target="_blank" rel="noopener"><div class="hl-img v3"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>Alexander</span></div><h3>Alexander – E-Learning App &amp; Website</h3></div></a>
+        <a class="hl-card" href="https://www.behance.net/gallery/258301229/Cleo-Salon-Booking-App-for-Customers-Staff-Owners" target="_blank" rel="noopener"><div class="hl-img v4"></div><span class="hl-arrow">↗</span><div class="hl-info"><div class="hl-row"><span class="hl-pill">Mobile App</span><span>Cleo Salon</span></div><h3>Cleo Salon Booking App</h3></div></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONTACT -->
+  <main class="page" id="p-contact" hidden>
+    <section class="ct">
+      <span class="ct-eyebrow"><span class="dot"></span>Book a call</span>
+      <h1>Let’s collaborate</h1>
+      <p class="ct-p">Reach out and let’s talk about your product, your team and the problem you want to solve. Whether you have a clear brief or just a few questions, I’m happy to help.</p>
+      <div class="ct-list">
+        <div class="ct-item"><small>Phone</small><span>01280810892</span></div>
+        <div class="ct-item"><small>Email</small><a class="copymail" href="#">mariamkamel106@gmail.com</a></div>
+        <div class="ct-item"><small>WhatsApp</small><a href="https://wa.me/201280810892" target="_blank" rel="noopener">Chat with me ↗</a></div>
+        <div class="ct-item"><small>Social</small>
+          <div class="ct-soc"><a href="https://www.behance.net/mariammalak22" target="_blank" rel="noopener">Behance ↗</a><a href="https://dribbble.com/mariamkamel" target="_blank" rel="noopener">Dribbble ↗</a><a href="https://www.linkedin.com/in/mariamkameldesign/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BLOG POST (rendered by script) -->
+  <main class="page" id="p-post" hidden><div id="postwrap"></div></main>
+
+  <!-- FOOTER (all pages) -->
+  <footer class="foot">
+    <div class="top">
+      <div class="logo"><i></i><b></b><span>Mariam Kamel</span></div>
+      <nav class="fnav"><a href="#/about">About Me</a><a href="#/portfolio">Portfolio</a><a href="#/services">Services</a><a href="#/blog">Blog</a></nav>
+      <a class="fcta" href="https://wa.me/201280810892" target="_blank" rel="noopener">Book A Call ↗</a>
+    </div>
+    <div class="mid">
+      <div class="soc"><a href="https://www.behance.net/mariammalak22" target="_blank" rel="noopener">Behance</a><a href="https://dribbble.com/mariamkamel" target="_blank" rel="noopener">Dribbble</a></div>
+      <div class="c">
+        <div class="phone">01280810892</div>
+        <a class="mail copymail" href="#">mariamkamel106@gmail.com</a>
+      </div>
+      <div class="soc r"><a href="https://www.linkedin.com/in/mariamkameldesign/" target="_blank" rel="noopener">LinkedIn</a><a href="https://wa.me/201280810892" target="_blank" rel="noopener">WhatsApp Chat</a></div>
+    </div>
+    <div class="wm"><div class="track"><span>MARIAM KAMEL</span><span>MARIAM KAMEL</span></div></div>
+    <div class="legal">© 2026 Mariam Kamel. All rights reserved.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var pages=['home','about','portfolio','services','blog','contact'];
+  // Thin line arrows in place of the arrow characters
+  var ARR='<svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg>';
+  var ARD='<svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M4 9l4 4 4-4"/></svg>';
+  function arrows(root){
+    if(!root||!document.createTreeWalker) return;
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),list=[],n;
+    while((n=w.nextNode())){ if(/[↗↓]/.test(n.nodeValue)&&n.parentNode&&!/^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName)) list.push(n); }
+    list.forEach(function(t){
+      var s=document.createElement('span');
+      s.innerHTML=t.nodeValue.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\s*↗/g,ARR).replace(/\s*↓/g,ARD);
+      var p=t.parentNode;
+      while(s.firstChild) p.insertBefore(s.firstChild,t);
+      p.removeChild(t);
+    });
+  }
+  arrows(document.body);
+  // Selected Work: placeholder cover colour and device type per card (until real covers are added)
+  // Real project covers (built from the Figma screens), keyed by Behance gallery id
+  var COVERS={'256606643':'anouq.jpg','256559643':'nussuk.jpg','256450737':'tojarii.jpg','256452263':'4business.jpg','256327869':'4jobs.jpg','256313931':'mejwal.jpg','256510635':'cqbs.jpg','254059837':'zahra.jpg','256599119':'almawarid.jpg','258286395':'alexander.jpg','256308553':'alamani.jpg','258301229':'cleo.jpg','255756821':'banking.jpg','255695167':'glowup.jpg','255650407':'hospital.jpg','255621861':'pos.jpg','256311151':'alsayer.jpg'};
+  function coverFor(h){ var m=/gallery\/(\d+)/.exec(h||''); return m&&COVERS[m[1]]?'assets/'+COVERS[m[1]]:null; }
+  document.querySelectorAll('#strip .proj').forEach(function(p){ var u=coverFor(p.getAttribute('data-href')), ph=p.querySelector('.ph'); if(u&&ph){ ph.style.backgroundImage='url('+u+')'; ph.classList.add('has-img'); } });
+  document.querySelectorAll('#pgrid a').forEach(function(a){ var u=coverFor(a.getAttribute('href')), ph=a.querySelector('.ph'); if(u&&ph){ ph.style.backgroundImage='url('+u+')'; ph.classList.add('has-img'); a.classList.add('has-img'); } });
+  document.querySelectorAll('.hl-card').forEach(function(a){ var u=coverFor(a.getAttribute('href')), im=a.querySelector('.hl-img'); if(u&&im){ im.style.background='url('+u+') center/cover no-repeat'; } });
+  var PC=['#DCE6F2','#DDE5D3','#EFE3D6','#E8DFF0','#F3DCD4','#DDE3E8'];
+  document.querySelectorAll('#strip .proj .ph').forEach(function(ph,i){
+    ph.style.setProperty('--c',PC[i%PC.length]);
+    if(/Dashboard|Work Order|Soft Drinks|Trading/i.test(ph.textContent)) ph.setAttribute('data-kind','web');
+  });
+  // Round arrow that follows the cursor over project cards
+  var cur=document.createElement('div');
+  cur.className='cur-arrow';
+  cur.innerHTML='<span>'+ARR+'</span>';
+  document.body.appendChild(cur);
+  var curX=0,curY=0,curTX=0,curTY=0,curSeen=false;
+  function curCheck(){ var el=curSeen?document.elementFromPoint(curTX,curTY):null; cur.classList.toggle('on',!!(el&&el.closest&&el.closest('.strip .ph,.hl-card'))); }
+  document.addEventListener('mousemove',function(e){ curTX=e.clientX; curTY=e.clientY; if(!curSeen){ curSeen=true; curX=curTX; curY=curTY; } curCheck(); });
+  document.addEventListener('scroll',curCheck,{passive:true});
+  document.documentElement.addEventListener('mouseleave',function(){ cur.classList.remove('on'); });
+  (function curLoop(){ curX+=(curTX-curX)*.2; curY+=(curTY-curY)*.2; cur.style.transform='translate('+curX+'px,'+curY+'px)'; requestAnimationFrame(curLoop); })();
+  var POSTS=[
+    {slug:'why-product-designers-should-own-design-system',title:'Why Product Designers Should Own the Design System',cat:'Design Systems',tags:['Design Systems','Process'],lead:'How one shared source of truth ended visual drift, shortened the path to development and kept every release consistent.',date:'Oct 2026',read:'6 min',v:'v1',body:[{h:'Where the drift started'},{p:'When every screen was designed from scratch, small differences in spacing, colour and button states piled up. Developers rebuilt the same components again and again, and reviews turned into arguments about pixels instead of user needs.'},{h:'Owning the system as a designer'},{p:'Owning the design system changed that. I built a single Figma library with tokens, components and usage rules, then tied each component to its code counterpart so both sides spoke the same language.'},{ul:['Fewer handoff questions between design and development','Faster sprints because components are reused, not rebuilt','One product that looks and behaves like one piece']},{q:'A design system is a product with its own backlog and its own users.'},{h:'Where to start'},{p:'Start small with buttons, inputs and typography. Document every decision, and review the system every release cycle the same way you review the product.'}]},
+    {slug:'designing-for-first-time-traders',title:'Designing for First-Time Traders',cat:'UI/UX',tags:['Fintech','UX Research'],lead:'Reducing information overload so a beginner understands risk before the first simulated trade.',date:'Sep 2026',read:'7 min',v:'v2',body:[{h:'The problem with a full trading screen'},{p:'A first-time trader opening a professional trading screen sees dozens of numbers, charts and order types at once. Most of them are noise at that stage, and the risk hides behind the complexity.'},{h:'Guiding the first steps'},{ul:['A simplified first view with one chart and one clear action','A plain-language risk explanation before the first simulated trade','Advanced tools revealed progressively as confidence grows']},{p:'Testing these flows with beginners showed where they hesitated, and those findings went into the next release in the same cycle.'},{q:'Clarity about risk matters more than the number of features on the screen.'}]},
+    {slug:'usability-testing-every-release',title:'Usability Testing Every Release Cycle',cat:'Process',tags:['Research','Usability'],lead:'A lightweight routine that keeps findings flowing into the roadmap without slowing the team down.',date:'Aug 2026',read:'5 min',v:'v3',body:[{h:'Small and frequent beats big and late'},{p:'Waiting for a big research project means findings arrive after the decisions are already made. A short test each release cycle keeps feedback close to the work.'},{h:'A routine that fits a sprint'},{ul:['Around five participants per flow is enough to catch the most painful issues','Test the changed flows only, not the whole product','Log findings as tickets so they enter the backlog the same week']},{p:'The goal is not a perfect report. It is a steady habit that keeps real users in the room.'},{q:'Testing every release turns research from an event into a habit.'}]},
+    {slug:'accessibility-from-wireframe-stage',title:'Accessibility From the Wireframe Stage',cat:'Process',tags:['Accessibility','Wireframes'],lead:'Catching contrast, hierarchy and flow problems early is far cheaper than fixing them after build.',date:'Jul 2026',read:'4 min',v:'v4',body:[{h:'Why the wireframe is the right moment'},{p:'Contrast, heading order and focus flow are structural decisions. Changing them after development means reworking components, tests and sometimes the logic behind them.'},{h:'What to check at wireframe level'},{ul:['Heading hierarchy that still reads correctly without colour','Touch targets large enough for thumbs on mobile','A focus order that follows the reading order','Labels and error messages written as full sentences']},{p:'Adding these checks to the design review keeps accessibility in the same conversation as layout, instead of a separate audit at the end.'},{q:'Accessible design is usually better design, and it is cheaper early.'}]},
+    {slug:'dashboards-that-answer-one-question',title:'Dashboards That Answer One Question',cat:'UI/UX',tags:['ERP','Dashboards'],lead:'Turning ERP and HR data into a clear next action instead of another table to read.',date:'Jun 2026',read:'5 min',v:'v5',body:[{h:'Data is not the same as an answer'},{p:'Many dashboards show every metric the business owns and leave the user to work out what to do. The screen looks busy, but nothing on it tells a manager where to start.'},{h:'Designing around one question'},{p:'Before drawing any chart, I ask which single question the user needs answered at the start of their day. Everything else moves to a secondary view.'},{ul:['Lead with the one number or alert that needs action','Show the trend that explains it, not ten related charts','Link each alert to the screen where it can be fixed']},{q:'A dashboard that needs a manual to read has already failed its user.'}]},
+    {slug:'mobile-marketplaces-lessons',title:'Mobile Marketplaces: Lessons From Four Projects',cat:'Product Design',tags:['Mobile','E-commerce'],lead:'What I learned designing buying, selling and booking flows for mobile marketplaces.',date:'May 2026',read:'8 min',v:'v6',body:[{h:'Four projects, one pattern'},{p:'Across marketplace projects for food, businesses, cars and services, the same friction kept showing up: people wanted to find the right listing quickly and trust the other side before paying.'},{h:'What worked'},{ul:['Search and filters that stay visible while browsing','Listing cards with price, location and seller trust signals up front','Booking or checkout with the fewest steps the business rules allow']},{p:'The biggest lesson was that trust is a design problem. Ratings, verification badges and clear policies do more than extra features.'},{q:'On a marketplace, trust is the feature users pay for.'}]}
+  ];
+  var BLK=function(b){
+    if(b.h) return '<h3>'+b.h+'</h3>';
+    if(b.p) return '<p>'+b.p+'</p>';
+    if(b.ul) return '<ul>'+b.ul.map(function(x){ return '<li>'+x+'</li>'; }).join('')+'</ul>';
+    if(b.q) return '<blockquote class="ar-quote">'+b.q+'</blockquote>';
+    return '';
+  };
+  function renderPost(slug){
+    var idx=0;
+    POSTS.forEach(function(p,i){ if(p.slug===slug) idx=i; });
+    var p=POSTS[idx];
+    var rel=POSTS.filter(function(x,i){ return i!==idx; }).slice(0,3);
+    document.getElementById('postwrap').innerHTML =
+      '<div class="ar-wrap">'
+      +'<div class="ar-crumbs"><a href="#/blog">← Back to blog</a><span>Home › Blog</span></div>'
+      +'<div class="ar-tags">'+p.tags.map(function(t){ return '<span>'+t+'</span>'; }).join('')+'</div>'
+      +'<h1>'+p.title+'</h1>'
+      +'<p class="ar-lead">'+p.lead+'</p>'
+      +'<div class="ar-by"><b>Mariam Kamel</b><span>'+p.date+'</span><span>'+p.read+' read</span></div>'
+      +'<div class="ar-hero '+p.v+'"></div>'
+      +'<article class="ar-body">'+p.body.map(BLK).join('')+'</article>'
+      +'<section><h3 class="ar-rel-h">More articles</h3><div class="ar-rel">'
+      +rel.map(function(x){ return '<a href="#/blog/'+x.slug+'"><div class="ar-rv '+x.v+'"></div><div class="ar-rb"><small>'+x.cat+' · '+x.read+' read</small><h4>'+x.title+'</h4></div></a>'; }).join('')
+      +'</div></section>'
+      +'<section class="bl-cta"><h3>Have a product that needs clearer design?</h3><p>Tell me about it and let’s figure out the next step together.</p><a href="#/services">Book A Call ↗</a></section>'
+      +'</div>';
+  }
+
+  function show(){
+    var raw=(location.hash||'#/').replace('#/','')||'home';
+    var isPost=raw.indexOf('blog/')===0;
+    var r=isPost?'post':raw;
+    if(!isPost && pages.indexOf(r)<0) r='home';
+    if(isPost){ renderPost(raw.slice(5)); arrows(document.getElementById('postwrap')); }
+    var navR=isPost?'blog':r;
+    document.querySelectorAll('main.page').forEach(function(m){ m.hidden = (m.id!=='p-'+r); });
+    document.querySelectorAll('.links a').forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-go')===navR); });
+    document.querySelectorAll('.foot .fnav a').forEach(function(a){ a.style.opacity=''; });
+    window.scrollTo(0,0);
+    observe();
+  }
+  window.addEventListener('hashchange',show);
+
+  function countUp(){
+    document.querySelectorAll('#p-about .box .n').forEach(function(el){
+      var raw=el.textContent.trim();
+      var num=parseFloat(raw);
+      if(isNaN(num)) return;
+      var suffix=raw.replace(/[0-9.]/g,'');
+      var dec=(raw.split('.')[1]||'').replace(/[^0-9]/g,'').length;
+      var start=null, dur=1400;
+      el.textContent=(0).toFixed(dec)+suffix;
+      function step(t){
+        if(start===null) start=t;
+        var p=Math.min((t-start)/dur,1);
+        var e=1-Math.pow(1-p,3);
+        el.textContent=(num*e).toFixed(dec)+suffix;
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  var io=null;
+  function observe(){
+    if(!('IntersectionObserver' in window)) return;
+    if(io) io.disconnect();
+    io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    },{threshold:0.15,rootMargin:'0px 0px -60px 0px'});
+    document.querySelectorAll('main.page:not([hidden]) > *, main.page:not([hidden]) .job, main.page:not([hidden]) .post, main.page:not([hidden]) .proj, main.page:not([hidden]) .pgrid a').forEach(function(el){
+      if(el.classList.contains('in')) return;
+      if(!el.classList.contains('rv')){
+        el.classList.add('rv');
+        var sibs=[...el.parentElement.children].filter(function(c){return c.classList.contains('rv')});
+        el.style.setProperty('--d',(300+sibs.indexOf(el)*100)+'ms');
+      }
+      io.observe(el);
+    });
+  }
+  var st=document.createElement('style');
+  st.textContent='.js .rv{opacity:0;transform:translateY(100px);transition:opacity 1s cubic-bezier(.25,1,.5,1),transform 1s cubic-bezier(.25,1,.5,1);transition-delay:var(--d,0ms)}.js .rv.in{opacity:1;transform:none}.js .proj.in:hover{transform:translateY(-8px)}@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}';
+  document.head.appendChild(st);
+
+  // Jobs: add the hidden image panel where missing
+  document.querySelectorAll('.job').forEach(function(job){ /* already built in markup */ });
+
+  // Project cards open Behance
+  document.getElementById('strip').addEventListener('click',function(e){
+    var p=e.target.closest&&e.target.closest('.proj[data-href]');
+    if(p) window.open(p.getAttribute('data-href'),'_blank','noopener');
+  });
+
+  // Email: copy the address (mailto is blocked inside the preview frame)
+  document.querySelectorAll('.copymail').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var txt='mariamkamel106@gmail.com';
+      var old=a.innerHTML;
+      var done=function(){ a.textContent='Email copied ✓'; setTimeout(function(){ a.innerHTML=old; },1800); };
+      var fallback=function(){ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); }catch(err){} t.remove(); done(); };
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,fallback); } else { fallback(); }
+    });
+  });
+
+  // Home About: animate blocks when they enter the view
+  function countEl(el){
+    if(!el) return;
+    var raw=el.textContent.trim();
+    var num=parseFloat(raw);
+    if(isNaN(num)) return;
+    var suffix=raw.replace(/[0-9.]/g,'');
+    var dec=(raw.split('.')[1]||'').replace(/[^0-9]/g,'').length;
+    var start=null;
+    el.textContent=(0).toFixed(dec)+suffix;
+    function step(t){
+      if(start===null) start=t;
+      var p=Math.min((t-start)/1400,1);
+      var e=1-Math.pow(1-p,3);
+      el.textContent=(num*e).toFixed(dec)+suffix;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var aboutBits=document.querySelectorAll('#about-sec .about-photo,#about-sec .card,#about-sec .pt');
+  if('IntersectionObserver' in window){
+    var aio=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('go');
+          if(en.target.classList.contains('card')) countEl(en.target.querySelector('.big'));
+          aio.unobserve(en.target);
+        }
+      });
+    },{threshold:0.25});
+    aboutBits.forEach(function(el){ aio.observe(el); });
+  } else {
+    aboutBits.forEach(function(el){ el.classList.add('go'); });
+  }
+
+  // About page: count numbers and fade text when the block is in view
+  var aboutBoxes=document.querySelectorAll('#p-about .about-stats .box,#p-about .why .box,#p-about .testi,#p-services .svc .box,#p-services .feat,#p-blog .bl-card,#p-blog .bl-cta');
+  if('IntersectionObserver' in window){
+    var bio=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var b=en.target;
+          b.classList.add('go');
+          var n=b.querySelector('.n');
+          if(n) countEl(n);
+          bio.unobserve(b);
+        }
+      });
+    },{threshold:0.3});
+    aboutBoxes.forEach(function(b){ bio.observe(b); });
+  } else {
+    aboutBoxes.forEach(function(b){ b.classList.add('go'); });
+  }
+
+  // Blog cards open their article
+  document.querySelectorAll('#p-blog .bl-card').forEach(function(c,i){
+    c.style.cursor='pointer';
+    c.addEventListener('click',function(){ location.hash='#/blog/'+POSTS[i].slug; });
+  });
+
+  // Blog filters
+  document.querySelectorAll('#p-blog .filters button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#p-blog .filters button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      var f=b.getAttribute('data-f');
+      document.querySelectorAll('#p-blog .bl-card').forEach(function(c){ c.hidden = !(f==='all' || c.getAttribute('data-cat')===f); });
+    });
+  });
+
+  // Scroll-down button
+  var sd=document.getElementById('scrolldown');
+  if(sd) sd.addEventListener('click',function(){ var t=document.getElementById('about-sec'); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
+
+  // Portfolio filters
+  document.querySelectorAll('#filters button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#filters button').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+      var f=b.getAttribute('data-f');
+      document.querySelectorAll('#pgrid a').forEach(function(a){ a.hidden = !(f==='all' || a.getAttribute('data-cat')===f); });
+    });
+  });
+
+  // Auto-slide projects
+  var strip=document.getElementById('strip');
+  if(strip && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var originals=Array.prototype.slice.call(strip.children);
+    originals.forEach(function(c){var k=c.cloneNode(true);k.setAttribute('aria-hidden','true');strip.appendChild(k);});
+    var setW=0;
+    function measure(){ setW=originals.length>0 && strip.children[originals.length] ? strip.children[originals.length].offsetLeft-strip.children[0].offsetLeft : 0; }
+    measure(); window.addEventListener('resize',measure);
+    strip.style.scrollBehavior='auto';
+    var paused=false,last=null,speed=120,pos=0;
+    strip.addEventListener('mouseenter',function(){paused=true});
+    strip.addEventListener('mouseleave',function(){paused=false});
+    strip.addEventListener('touchstart',function(){paused=true},{passive:true});
+    strip.addEventListener('touchend',function(){setTimeout(function(){paused=false},1500)});
+    strip.addEventListener('focusin',function(){paused=true});
+    strip.addEventListener('focusout',function(){paused=false});
+    function step(t){
+      if(last===null) last=t;
+      var dt=(t-last)/1000; last=t;
+      if(setW<=0) measure();
+      if(paused){ pos=strip.scrollLeft; }
+      else if(setW>0){ pos+=speed*dt; if(pos>=setW) pos-=setW; strip.scrollLeft=pos; }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Tools marquee: add a logo before each tool name
+  var B='assets/';
+  var TOOL_ICONS={'Figma':B+'figma.svg','Framer':B+'framer.svg','Sketch':B+'sketch.svg','Webflow':B+'webflow.svg','Rive':B+'rive.svg','LottieFiles':B+'lottiefiles.svg','Maze':B+'maze.svg','Hotjar':B+'hotjar.svg','Google Forms':B+'googleforms.svg','Google Analytics':B+'googleanalytics.svg','Jira':B+'jira.svg','Trello':B+'trello.svg','Notion':B+'notion.svg','Asana':B+'asana.svg','ClickUp':B+'clickup.svg','Linear':B+'linear.svg','Miro':B+'miro.svg','Claude':B+'claude.svg','Gemini':B+'googlegemini.svg','Perplexity':B+'perplexity.svg','NotebookLM':B+'notebooklm.svg','Cursor':B+'cursor.svg','v0':B+'v0.svg','Zoom':B+'zoom.svg','Google Meet':B+'googlemeet.svg'};
+  // Tools grouped: row 1 design, graphics and motion, research; row 2 management, AI, communication
+  var TOOL_ROWS=[
+    ['Figma','Framer','Sketch','Webflow','Rive','LottieFiles','Adobe XD','FigJam','Spline','Zeplin','ProtoPie','Photoshop','Illustrator','After Effects','Premiere Pro','Canva','CapCut','Maze','Hotjar','Google Forms','Google Analytics'],
+    ['Jira','Trello','Notion','Asana','ClickUp','Linear','Miro','Slack','Monday','Claude','Gemini','Perplexity','NotebookLM','Cursor','v0','ChatGPT','Midjourney','Lovable','Zoom','Google Meet','Microsoft Teams']
+  ];
+  var toolsWrap=document.getElementById('tools');
+  if(toolsWrap){
+    toolsWrap.innerHTML=TOOL_ROWS.map(function(r){
+      var h=r.map(function(n){ return '<div>'+n+'</div>'; }).join('');
+      return '<div class="tm-track">'+h+h+'</div>';
+    }).join('');
+  }
+  document.querySelectorAll('.tm-track div').forEach(function(d){
+    var n=d.textContent.trim();
+    var s=TOOL_ICONS[n];
+    if(!s) return;
+    d.innerHTML='<img alt="" width="28" height="28" src="'+s+'" style="margin-right:12px;flex:0 0 auto" onerror="this.remove()"><span>'+n+'</span>';
+  });
+
+  show();
+})();
+</script>
+</body>
+</html>
