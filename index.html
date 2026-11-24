@@ -543,7 +543,7 @@ a{color:inherit;text-decoration:none}
 #p-portfolio .pgrid a.has-img::after{display:none}
 #p-portfolio .pgrid .ph{height:auto;aspect-ratio:703/440}
 /* Contact card: collage of project covers behind the text */
-.ctacard{position:relative;overflow:hidden;background:#1b1b1b url('assets/cta-bg.jpg') center/cover no-repeat}
+.ctacard{position:relative;overflow:hidden;background:#1b1b1b url('cta-bg.jpg') center/cover no-repeat}
 .ctacard::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(18,18,18,.86) 0%,rgba(18,18,18,.8) 55%,rgba(18,18,18,.66) 100%),rgba(18,18,18,.5)}
 .ctacard>*{position:relative}
 </style>
@@ -573,7 +573,7 @@ a{color:inherit;text-decoration:none}
         <p class="sub">— Mariam Kamel, Senior Product Designer</p>
       </div>
       <button type="button" class="scroll" id="scrolldown">Scroll down ↓</button>
-      <div class="ph portrait" style="background:url('assets/portrait.png') center/cover no-repeat"></div>
+      <div class="ph portrait" style="background:url('portrait.png') center/cover no-repeat"></div>
     </section>
 
     <section class="about rv-group" id="about-sec">
@@ -586,12 +586,12 @@ a{color:inherit;text-decoration:none}
           <div class="pt"><i><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" fill="#fff" stroke="none"/></svg></i><span>I run usability tests every release cycle and build design systems that keep product teams and engineers working from one source of truth.</span></div>
         </div>
       </div>
-      <div class="ph about-photo" style="background:url('assets/portrait.png') center 20%/cover no-repeat"></div>
+      <div class="ph about-photo" style="background:url('portrait.png') center 20%/cover no-repeat"></div>
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#222" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.800 0 18M12 3c-3 3.200-3 14.800 0 18"/></svg></div>
         <div class="big">5+</div>
         <div class="lbl">Years designing SaaS, fintech and EdTech products</div>
-        <div class="ph" style="background:url('assets/portrait.png') center 20%/cover no-repeat"></div>
+        <div class="ph" style="background:url('portrait.png') center 20%/cover no-repeat"></div>
       </div>
     </section>
 
@@ -874,7 +874,7 @@ a{color:inherit;text-decoration:none}
   // Selected Work: placeholder cover colour and device type per card (until real covers are added)
   // Real project covers (built from the Figma screens), keyed by Behance gallery id
   var COVERS={'256606643':'anouq.jpg','256559643':'nussuk.jpg','256450737':'tojarii.jpg','256452263':'4business.jpg','256327869':'4jobs.jpg','256313931':'mejwal.jpg','256510635':'cqbs.jpg','254059837':'zahra.jpg','256599119':'almawarid.jpg','258286395':'alexander.jpg','256308553':'alamani.jpg','258301229':'cleo.jpg','255756821':'banking.jpg','255695167':'glowup.jpg','255650407':'hospital.jpg','255621861':'pos.jpg','256311151':'alsayer.jpg'};
-  function coverFor(h){ var m=/gallery\/(\d+)/.exec(h||''); return m&&COVERS[m[1]]?'assets/'+COVERS[m[1]]:null; }
+  function coverFor(h){ var m=/gallery\/(\d+)/.exec(h||''); return m&&COVERS[m[1]]?''+COVERS[m[1]]:null; }
   document.querySelectorAll('#strip .proj').forEach(function(p){ var u=coverFor(p.getAttribute('data-href')), ph=p.querySelector('.ph'); if(u&&ph){ ph.style.backgroundImage='url('+u+')'; ph.classList.add('has-img'); } });
   document.querySelectorAll('#pgrid a').forEach(function(a){ var u=coverFor(a.getAttribute('href')), ph=a.querySelector('.ph'); if(u&&ph){ ph.style.backgroundImage='url('+u+')'; ph.classList.add('has-img'); a.classList.add('has-img'); } });
   document.querySelectorAll('.hl-card').forEach(function(a){ var u=coverFor(a.getAttribute('href')), im=a.querySelector('.hl-img'); if(u&&im){ im.style.background='url('+u+') center/cover no-repeat'; } });
@@ -1119,7 +1119,7 @@ a{color:inherit;text-decoration:none}
   }
 
   // Tools marquee: add a logo before each tool name
-  var B='assets/';
+  var B='';
   var TOOL_ICONS={'Figma':B+'figma.svg','Framer':B+'framer.svg','Sketch':B+'sketch.svg','Webflow':B+'webflow.svg','Rive':B+'rive.svg','LottieFiles':B+'lottiefiles.svg','Maze':B+'maze.svg','Hotjar':B+'hotjar.svg','Google Forms':B+'googleforms.svg','Google Analytics':B+'googleanalytics.svg','Jira':B+'jira.svg','Trello':B+'trello.svg','Notion':B+'notion.svg','Asana':B+'asana.svg','ClickUp':B+'clickup.svg','Linear':B+'linear.svg','Miro':B+'miro.svg','Claude':B+'claude.svg','Gemini':B+'googlegemini.svg','Perplexity':B+'perplexity.svg','NotebookLM':B+'notebooklm.svg','Cursor':B+'cursor.svg','v0':B+'v0.svg','Zoom':B+'zoom.svg','Google Meet':B+'googlemeet.svg'};
   // Tools grouped: row 1 design, graphics and motion, research; row 2 management, AI, communication
   var TOOL_ROWS=[
